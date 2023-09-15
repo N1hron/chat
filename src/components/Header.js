@@ -11,6 +11,7 @@ const StyledHeader = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 80px;
 
     & h2 {
         font-size: 2.5rem;
@@ -31,6 +32,10 @@ const StyledHeader = styled.header`
 
         &:hover {
             fill: ${({ theme }) => theme.colors['accent-1']};
+        }
+
+        &:active {
+            fill: ${({ theme }) => theme.colors['accent-1-darker']};
         }
     }
 `

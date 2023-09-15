@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Input from '../components/FormField'
 import { StyledForm } from '../styled/StyledForm'
 import { FormWrapper } from '../styled/FormWrapper'
-import { ReactComponent as LogInIcon} from '../resources/icons/login.svg'
+import { ReactComponent as SignUpIcon} from '../resources/icons/registration.svg'
 import { FormImage } from '../styled/FormImage'
 import { StyledButtonPrimary } from '../styled/StyledButton'
 
@@ -12,7 +12,7 @@ export default function SignUpPage() {
         <FormWrapper>
             <StyledForm>
                 <FormImage>
-                    <LogInIcon/>
+                    <SignUpIcon/>
                 </FormImage>
                 <Input label='email' type='email'/>
                 <Input label='password' type='password'/>

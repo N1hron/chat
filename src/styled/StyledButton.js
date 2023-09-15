@@ -29,6 +29,14 @@ export const StyledButton = styled.button`
             fill: ${({ theme }) => theme.colors['accent-1']};
         }
     }
+
+    &:active {
+        color: ${({ theme }) => theme.colors['accent-1-darker']};
+
+        svg {
+            fill: ${({ theme }) => theme.colors['accent-1-darker']};
+        }
+    }
 `
 
 export const StyledButtonPrimary = styled(StyledButton)`
