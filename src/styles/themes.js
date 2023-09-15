@@ -6,6 +6,7 @@ export const themes = {
             'secondary-2': '#E0FBFC', // Light cyan
             'secondary-3': '#BDCADB',
             'accent-1': '#EE6C4D', // Burnt sienna
+            'accent-1-darker': '#D36045', // Burnt sienna
             'accent-2': '#293241' // Gunmetal
         }
     }

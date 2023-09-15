@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import interRegular from '../resources/fonts/Inter-Regular.ttf'
 import interBold from '../resources/fonts/Inter-Bold.ttf'
+import bgPattern from '../resources/icons/pattern-4.svg'
 
 const GlobalStyle = createGlobalStyle`
     @font-face {
@@ -20,6 +21,11 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         font-family: 'Inter', sans-serif;
+        
+        &::before,
+        &::after {
+            box-sizing: border-box;
+        }
     }
 
     body, #root {
@@ -29,6 +35,9 @@ const GlobalStyle = createGlobalStyle`
 
     main {
         flex-grow: 1;
+        background-image: url(${ bgPattern });
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     #root {

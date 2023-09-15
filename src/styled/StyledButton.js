@@ -1,6 +1,9 @@
 import { styled } from 'styled-components'
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
+    padding: 0.5rem 0.75rem;
+    /* width: max-content; */
+    border-radius: .75rem;
     background: none;
     border: none;
     color: #FFF;
@@ -17,7 +20,7 @@ const StyledButton = styled.button`
         transition: fill 0.15s;
     }
 
-    transition: color 0.15s;
+    transition: all 0.15s;
 
     &:hover {
         color: ${({ theme }) => theme.colors['accent-1']};
@@ -28,10 +31,11 @@ const StyledButton = styled.button`
     }
 `
 
-export default function Button({ children }) {
-    return (
-        <StyledButton>
-            { children }
-        </StyledButton>
-    )
-}
+export const StyledButtonPrimary = styled(StyledButton)`
+    background-color: ${({ theme }) => theme.colors['accent-1']};
+
+    &:hover {
+        color: #FFF;
+        background-color: ${({ theme }) => theme.colors['accent-1-darker']};
+    }
+`

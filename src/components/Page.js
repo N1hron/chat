@@ -6,6 +6,7 @@ const PageContent = styled.section`
     display: flex;
     flex-direction: column;
     height: 100%;
+    background-color: ${({ theme }) => theme.colors['secondary-3']}B6;
 `
 
 const PageBody = styled.div`
