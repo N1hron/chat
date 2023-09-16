@@ -2,10 +2,59 @@ import { useEffect } from 'react'
 import { useFormik } from 'formik'
 import { styled } from 'styled-components'
 
-import Field from './Field'
+import FormField from './FormField'
 import { ButtonPrimary } from '../Button'
 
-const Wrapper = styled.form`
+export default function Form({ icon, fieldsData, btnLabel, validate, onSubmit, children }) {
+    const formik = useFormik({
+        initialValues: setInitialValues(),
+        validate,
+        onSubmit
+    })
+
+    function setInitialValues() {
+        const initialValues = {}
+    
+        fieldsData.forEach(data => {
+            initialValues[data.name] = ''
+        })
+    
+        return initialValues
+    }
+
+    useEffect(() => {
+        console.log(formik.initialValues)
+    }, [])
+
+    return (
+        <FormWrapper onSubmit={ formik.handleSubmit }>
+            { icon ? <IconContainer>{ icon }</IconContainer> : null }
+
+            {
+                fieldsData.map(data => {
+                    const { label, name, type } = data
+                    
+                    return (
+                        <FormField 
+                            key={ name }
+                            label={ label }
+                            name={ name }
+                            type={ type } 
+                            value={ formik.values[name] } 
+                            onChange={ formik.handleChange }
+                        />
+                    )
+                })
+            }
+
+            <ButtonPrimary type='submit'>{ btnLabel }</ButtonPrimary>
+
+            { children }
+        </FormWrapper>
+    )
+}
+
+const FormWrapper = styled.form`
     background-color: #FFFFFFB6;
     border-radius: 10px;
     padding: 60px 20px 20px;
@@ -56,52 +105,3 @@ const IconContainer = styled.div`
         height: auto;
     }
 `
-
-export default function Form({ icon, fieldsData, btnLabel, validate, onSubmit, children }) {
-    const formik = useFormik({
-        initialValues: setInitialValues(),
-        validate,
-        onSubmit
-    })
-
-    function setInitialValues() {
-        const initialValues = {}
-    
-        fieldsData.forEach(data => {
-            initialValues[data.name] = ''
-        })
-    
-        return initialValues
-    }
-
-    useEffect(() => {
-        console.log(formik.initialValues)
-    }, [])
-
-    return (
-        <Wrapper onSubmit={ formik.handleSubmit }>
-            { icon ? <IconContainer>{ icon }</IconContainer> : null }
-
-            {
-                fieldsData.map(data => {
-                    const { label, name, type } = data
-                    
-                    return (
-                        <Field 
-                            key={ name }
-                            label={ label }
-                            name={ name }
-                            type={ type } 
-                            value={ formik.values[name] } 
-                            onChange={ formik.handleChange }
-                        />
-                    )
-                })
-            }
-
-            <ButtonPrimary type='submit'>{ btnLabel }</ButtonPrimary>
-
-            { children }
-        </Wrapper>
-    )
-}

@@ -29,7 +29,7 @@ export default function LogInPage() {
             btnLabel='Sign up'
             onSubmit={ (values) => {console.log(values)} }
         >
-            <p>Already have an account? <Link to='/login'>Log in</Link></p>
+            <p>Already have an account? <Link to='/anauthorized/login'>Log in</Link></p>
         </Form>
     )
 }

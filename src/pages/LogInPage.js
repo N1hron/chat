@@ -24,7 +24,7 @@ export default function LogInPage() {
             btnLabel='Log in'
             onSubmit={ (values) => {console.log(values)} }
         >
-            <p>Or create new account: <Link to='/signup'>Sign up</Link></p>
+            <p>Or create new account: <Link to='/anauthorized/signup'>Sign up</Link></p>
         </Form>
     )
 }

@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 
 import { themes } from '../styles/themes'
 import GlobalStyle from '../styles/GlobalStyle'
-import MainLayout from '../layouts/MainLayout'
-import AnonymousLayout from '../layouts/AnonymousLayout'
+import HomeLayout from '../layouts/HomeLayout'
+import UnauthorizedLayout from '../layouts/UnauthorizedLayout'
 import ProfilePage from '../pages/ProfilePage'
 import ChatPage from '../pages/ChatPage'
 import LogInPage from '../pages/LogInPage'
@@ -16,17 +16,16 @@ function App() {
             <GlobalStyle/>
 
             <Routes>
-                <Route path='/' element={ <AnonymousLayout/> }>
-                    <Route path='login' element={ <LogInPage/> }/>
-                    <Route path='signup' element={ <SignUpPage/> }/>
+                <Route path='/' element={ <HomeLayout/> }>
+                    <Route path='/profile' element={ <ProfilePage/> }/>
+                    <Route path='/chat' element={ <ChatPage/> }/>
                 </Route>
 
-                <Route path='/home' element={ <MainLayout/> }>
-                    <Route path='/home/profile' element={ <ProfilePage/> }/>
-                    <Route path='/home/chat' element={ <ChatPage/> }/>
+                <Route path='/unauthorized' element={ <UnauthorizedLayout/> }>
+                    <Route path='/unauthorized/login' element={ <LogInPage/> }/>
+                    <Route path='/unauthorized/signup' element={ <SignUpPage/> }/>
                 </Route>
             </Routes>
-
         </ThemeProvider>
     )
 }

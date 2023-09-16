@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     background-color: var(--secondary-color-3);
 `
 
-export default function AnonymousLayout() {
+export default function UnauthorizedLayout() {
     return (
         <Wrapper>
             <Outlet/>

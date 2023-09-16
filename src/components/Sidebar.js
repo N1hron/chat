@@ -8,7 +8,40 @@ import { ReactComponent as ChatIcon } from '../resources/icons/chat.svg'
 import { StyledLink } from './StyledLink'
 import { Button } from './Button'
 
-const StyledAside = styled.aside`
+export default function Sidebar() {
+    return (
+        <SidebarWrapper>
+            <Link className='logo' to='/'>
+                <Logo/>
+                <h1><span>C</span>hat</h1>
+            </Link>
+
+            <SidebarNavigation>
+                <ul>
+                    <li>
+                        <StyledLink to='/profile'>
+                            <ProfileIcon/>
+                            Profile
+                        </StyledLink>
+                    </li>
+                    <li>
+                        <StyledLink to='/chat'>
+                            <ChatIcon/>
+                            Chat
+                        </StyledLink>
+                    </li>
+                </ul>
+            </SidebarNavigation>
+            
+            <Button>
+                <LogOutIcon/>
+                Log Out
+            </Button>
+        </SidebarWrapper>
+    )
+}
+
+const SidebarWrapper = styled.aside`
     height: 100%;
     background-color: ${({ theme }) => theme.colors['primary']};
     max-width: 300px;
@@ -61,7 +94,7 @@ const StyledAside = styled.aside`
     }
 `
 
-const Navigation = styled.nav`
+const SidebarNavigation = styled.nav`
     ul {
         padding: 20px;
         list-style: none;
@@ -70,34 +103,3 @@ const Navigation = styled.nav`
         gap: 1.5rem;
     }
 `
-
-export default function Sidebar() {
-    return (
-        <StyledAside>
-            <Link className='logo' to='/'>
-                <Logo/>
-                <h1><span>C</span>hat</h1>
-            </Link>
-            <Navigation>
-                <ul>
-                    <li>
-                        <StyledLink to='/profile'>
-                            <ProfileIcon/>
-                            Profile
-                        </StyledLink>
-                    </li>
-                    <li>
-                        <StyledLink to='/chat'>
-                            <ChatIcon/>
-                            Chat
-                        </StyledLink>
-                    </li>
-                </ul>
-            </Navigation>
-            <Button>
-                <LogOutIcon/>
-                Log Out
-            </Button>
-        </StyledAside>
-    )
-}

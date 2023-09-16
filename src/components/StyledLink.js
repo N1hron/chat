@@ -13,18 +13,18 @@ export const StyledLink = styled(Link)`
     transition: color 0.15s;
 
     &:hover {
-        color: var(--accent-color);
+        color: var(--accent-color-1);
 
         svg {
-            fill: var(--accent-color);
+            fill: var(--accent-color-1);
         }
     }
 
     &:active {
-        color: var(--accent-color-darker);
+        color: var(--accent-color-1-darker);
 
         svg {
-            fill: var(--accent-color-darker);
+            fill: var(--accent-color-1-darker);
         }
     }
 `

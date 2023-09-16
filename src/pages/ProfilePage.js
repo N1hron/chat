@@ -1,9 +1,9 @@
-import Page from '../components/Page'
+import HomeSection from '../components/HomeSection'
 
 export default function ProfilePage() {
     return (
-        <Page title='Profile'>
-        
-        </Page>
+        <HomeSection title='Profile'>
+            
+        </HomeSection>
     )
 }
