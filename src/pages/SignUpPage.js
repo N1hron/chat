@@ -1,25 +1,35 @@
 import { Link } from 'react-router-dom'
+import Form from '../components/form/Form'
+import { ReactComponent as SignUpIcon } from '../resources/icons/registration.svg'
 
-import Input from '../components/FormField'
-import { StyledForm } from '../styled/StyledForm'
-import { FormWrapper } from '../styled/FormWrapper'
-import { ReactComponent as SignUpIcon} from '../resources/icons/registration.svg'
-import { FormImage } from '../styled/FormImage'
-import { StyledButtonPrimary } from '../styled/StyledButton'
+const fieldsData = [
+    {
+        label: 'email',
+        name: 'email',
+        type: 'email'
+    },
+    {
+        label: 'password',
+        name: 'password',
+        type: 'password'
+    },
+    {
+        label: 'confirm password',
+        name: 'passwordConfirm',
+        type: 'password'
+    }
+]
 
-export default function SignUpPage() {
+export default function LogInPage() {
+
     return (
-        <FormWrapper>
-            <StyledForm>
-                <FormImage>
-                    <SignUpIcon/>
-                </FormImage>
-                <Input label='email' type='email'/>
-                <Input label='password' type='password'/>
-                <Input label='confirm password' type='password'/>
-                <StyledButtonPrimary type='submit'>Sign up</StyledButtonPrimary>
-                <p>Already have an account? <Link to='/login'>Log in</Link></p>
-            </StyledForm>
-        </FormWrapper>
+        <Form
+            icon={ <SignUpIcon/> }
+            fieldsData={ fieldsData }
+            btnLabel='Sign up'
+            onSubmit={ (values) => {console.log(values)} }
+        >
+            <p>Already have an account? <Link to='/login'>Log in</Link></p>
+        </Form>
     )
 }

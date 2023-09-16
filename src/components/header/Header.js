@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as ProfilePicture } from '../resources/icons/profile-picture.svg'
+import { ReactComponent as ProfilePicture } from '../../resources/icons/profile-picture.svg'
 
 const StyledHeader = styled.header`
     background-color: #FFFFFFB6;
@@ -15,12 +15,12 @@ const StyledHeader = styled.header`
 
     & h2 {
         font-size: 2.5rem;
-        color: ${({ theme }) => theme.colors['accent-2']};
+        color: var(--accent-color-2);
     }
 
     .profile-picture {
         position: absolute;
-        background-color: ${({ theme }) => theme.colors['primary']};
+        background-color: var(--primary-color);
         fill: #FFF;
         height: 100%;
         width: auto;
@@ -31,11 +31,11 @@ const StyledHeader = styled.header`
         cursor: pointer;
 
         &:hover {
-            fill: ${({ theme }) => theme.colors['accent-1']};
+            fill: var(--accent-color);
         }
 
         &:active {
-            fill: ${({ theme }) => theme.colors['accent-1-darker']};
+            fill: var(--accent-color-darker);
         }
     }
 `

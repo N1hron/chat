@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import Header from './Header'
+import Header from './header/Header'
 
 const PageContent = styled.section`
     display: flex;

@@ -13,18 +13,18 @@ export const StyledLink = styled(Link)`
     transition: color 0.15s;
 
     &:hover {
-        color: ${({ theme }) => theme.colors['accent-1']};
+        color: var(--accent-color);
 
         svg {
-            fill: ${({ theme }) => theme.colors['accent-1']};
+            fill: var(--accent-color);
         }
     }
 
     &:active {
-        color: ${({ theme }) => theme.colors['accent-1-darker']};
+        color: var(--accent-color-darker);
 
         svg {
-            fill: ${({ theme }) => theme.colors['accent-1-darker']};
+            fill: var(--accent-color-darker);
         }
     }
 `

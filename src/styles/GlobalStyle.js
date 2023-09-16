@@ -16,6 +16,16 @@ const GlobalStyle = createGlobalStyle`
         src: url(${interBold}) format('truetype');
     }
 
+    :root {
+        --primary-color: ${({ theme }) => theme.colors['primary']};
+        --accent-color-1: ${({ theme }) => theme.colors['accent-1']};
+        --accent-color-1-darker: ${({ theme }) => theme.colors['accent-1-darker']};
+        --accent-color-2: ${({ theme }) => theme.colors['accent-2']};
+        --secondary-color-1: ${({ theme }) => theme.colors['secondary-1']};
+        --secondary-color-2: ${({ theme }) => theme.colors['secondary-2']};
+        --secondary-color-3: ${({ theme }) => theme.colors['secondary-3']};
+    }
+
     * {
         margin: 0;
         padding: 0;

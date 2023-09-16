@@ -5,8 +5,8 @@ import { ReactComponent as Logo } from '../resources/icons/logo.svg'
 import { ReactComponent as LogOutIcon } from '../resources/icons/logout.svg'
 import { ReactComponent as ProfileIcon } from '../resources/icons/profile.svg'
 import { ReactComponent as ChatIcon } from '../resources/icons/chat.svg'
-import { StyledLink } from '../styled/StyledLink'
-import { StyledButton } from '../styled/StyledButton'
+import { StyledLink } from './StyledLink'
+import { Button } from './Button'
 
 const StyledAside = styled.aside`
     height: 100%;
@@ -94,10 +94,10 @@ export default function Sidebar() {
                     </li>
                 </ul>
             </Navigation>
-            <StyledButton>
+            <Button>
                 <LogOutIcon/>
                 Log Out
-            </StyledButton>
+            </Button>
         </StyledAside>
     )
 }
