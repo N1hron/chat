@@ -1,9 +1,9 @@
-import HomeSection from '../components/HomeSection'
+import MainSectionLayout from '../layouts/MainSectionLayout'
 
 export default function ChatPage() {
     return (
-        <HomeSection title='Chat'>
+        <MainSectionLayout title='Chat'>
             
-        </HomeSection>
+        </MainSectionLayout>
     )
 }

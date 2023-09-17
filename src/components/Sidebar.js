@@ -1,22 +1,21 @@
 import { styled } from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as Logo } from '../resources/icons/logo.svg'
 import { ReactComponent as LogOutIcon } from '../resources/icons/logout.svg'
 import { ReactComponent as ProfileIcon } from '../resources/icons/profile.svg'
 import { ReactComponent as ChatIcon } from '../resources/icons/chat.svg'
 import { StyledLink } from './StyledLink'
 import { Button } from './Button'
+import Logo from './Logo'
 
 export default function Sidebar() {
     return (
-        <SidebarWrapper>
+        <Wrapper>
             <Link className='logo' to='/'>
                 <Logo/>
-                <h1><span>C</span>hat</h1>
             </Link>
 
-            <SidebarNavigation>
+            <Navigation>
                 <ul>
                     <li>
                         <StyledLink to='/profile'>
@@ -31,17 +30,17 @@ export default function Sidebar() {
                         </StyledLink>
                     </li>
                 </ul>
-            </SidebarNavigation>
+            </Navigation>
             
             <Button>
                 <LogOutIcon/>
                 Log Out
             </Button>
-        </SidebarWrapper>
+        </Wrapper>
     )
 }
 
-const SidebarWrapper = styled.aside`
+const Wrapper = styled.aside`
     height: 100%;
     background-color: ${({ theme }) => theme.colors['primary']};
     max-width: 300px;
@@ -55,30 +54,9 @@ const SidebarWrapper = styled.aside`
     position: relative;
     z-index: 2;
 
-    h1 {
-        font-weight: 700;
-        font-size: 3rem;
-        display: block;
-    }
-
     svg {
         fill: #FFF;
         height: auto;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        user-select: none;
-
-        span {
-            color: ${({ theme }) => theme.colors['accent-1']}
-        }
-
-        svg {
-            width: 5rem;
-        }
     }
 
     nav {
@@ -94,7 +72,7 @@ const SidebarWrapper = styled.aside`
     }
 `
 
-const SidebarNavigation = styled.nav`
+const Navigation = styled.nav`
     ul {
         padding: 20px;
         list-style: none;

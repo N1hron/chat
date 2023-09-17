@@ -5,18 +5,18 @@ import { ReactComponent as ProfileIcon } from '../resources/icons/profile-pictur
 
 export default function Header({ title }) {
     return (
-        <HeaderWrapper>
+        <Wrapper>
             <h2>{ title }</h2>
             <ProfilePicture>
                 <Link to='/home/profile'>
                     <ProfileIcon className='profile-picture'/>
                 </Link>
             </ProfilePicture>
-        </HeaderWrapper>
+        </Wrapper>
     )
 }
 
-const HeaderWrapper = styled.header`
+const Wrapper = styled.header`
     background-color: #FFFFFFB6;
     backdrop-filter: blur(10px);
     height: 80px;

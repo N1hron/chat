@@ -4,18 +4,18 @@ import bgPattern from '../resources/icons/pattern-4.svg'
 
 import Sidebar from '../components/Sidebar'
 
-export default function HomeLayout() {
+export default function MainLayout() {
     return (
-        <HomeLayoutWrapper>
+        <Wrapper>
             <Sidebar/>
             <main>
                 <Outlet/>
             </main>
-        </HomeLayoutWrapper>
+        </Wrapper>
     )
 }
 
-const HomeLayoutWrapper = styled.div`
+const Wrapper = styled.div`
     display: flex;
     height: 100%;
 

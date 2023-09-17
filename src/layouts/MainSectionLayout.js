@@ -1,19 +1,19 @@
 import { styled } from 'styled-components'
 
-import Header from './Header'
+import Header from '../components/Header'
 
-export default function HomeSection({ title, children }) {
+export default function MainSection({ title, children }) {
     return (
-        <HomeSectionWrapper>
+        <Wrapper>
             <Header title={ title }/>
             <MainContent>
                 { children }
             </MainContent>
-        </HomeSectionWrapper>
+        </Wrapper>
     )
 }
 
-const HomeSectionWrapper = styled.section`
+const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     height: 100%;
