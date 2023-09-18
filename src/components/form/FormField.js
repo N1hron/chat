@@ -1,11 +1,11 @@
 import { useId } from 'react'
 import { styled } from 'styled-components'
 
-export default function FormField({ label, name, type, value = '', onChange }) {
+export default function FormField({ label, name, type, value = '', onChange, message = null }) {
     const id = useId()
 
     return (
-        <FormFieldWrapper>
+        <Wrapper>
             <label htmlFor={ id }>{ label }</label>
             <StyledInput 
                 id={ id } 
@@ -14,12 +14,19 @@ export default function FormField({ label, name, type, value = '', onChange }) {
                 type={ type } 
                 value={ value } 
                 onChange={ onChange }
+                autoComplete='off'
             />
-        </FormFieldWrapper>
+            { message && <Message>{ message }</Message> } 
+        </Wrapper>
     )
 }
 
-const FormFieldWrapper = styled.div`
+const Message = styled.p`
+    color: var(--accent-color-1);
+    margin-top: 0.5rem;
+`
+
+const Wrapper = styled.div`
     max-width: 250px;
     width: 100%;
 
@@ -40,4 +47,7 @@ const StyledInput = styled.input`
     outline: none;
     font: small-caption;
     font-size: 1rem;
+    color: var(--accent-color-2);
+    display: flex;
+    align-items: center;
 `

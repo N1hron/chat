@@ -9,6 +9,11 @@ const fieldsData = [
         type: 'email'
     },
     {
+        label: 'username',
+        name: 'username',
+        type: 'text'
+    },
+    {
         label: 'password',
         name: 'password',
         type: 'password'
@@ -29,7 +34,7 @@ export default function LogInPage() {
             btnLabel='Sign up'
             onSubmit={ (values) => {console.log(values)} }
         >
-            <p>Already have an account? <Link to='/anauthorized/login'>Log in</Link></p>
+            <p>Already have an account? <Link to='/unauthorized/login'>Log in</Link></p>
         </Form>
     )
 }

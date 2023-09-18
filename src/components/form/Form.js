@@ -1,14 +1,22 @@
 import { useEffect } from 'react'
 import { useFormik } from 'formik'
 import { styled } from 'styled-components'
+import * as Yup from 'yup'
 
 import FormField from './FormField'
 import { ButtonPrimary } from '../Button'
 
-export default function Form({ icon, fieldsData, btnLabel, validate, onSubmit, children }) {
+const defaultValidationSchema = Yup.object({
+    'email': Yup.string().email('Invalid email').required('This field is required'),
+    'password': Yup.string().min(6, 'Password is too short!').required('This field is required'),
+    'username': Yup.string().min(3, 'Username is too short!').required('This field is required'),
+    'passwordConfirm': Yup.string().oneOf([Yup.ref('password')], 'Passwords don\'t match').required('This field is required')
+})
+
+export default function Form({ icon, fieldsData, btnLabel, validationSchema, onSubmit, children }) {
     const formik = useFormik({
         initialValues: setInitialValues(),
-        validate,
+        validationSchema: validationSchema || defaultValidationSchema,
         onSubmit
     })
 
@@ -27,7 +35,7 @@ export default function Form({ icon, fieldsData, btnLabel, validate, onSubmit, c
     }, [])
 
     return (
-        <FormWrapper onSubmit={ formik.handleSubmit }>
+        <Wrapper onSubmit={ formik.handleSubmit }>
             { icon ? <IconContainer>{ icon }</IconContainer> : null }
 
             {
@@ -42,6 +50,7 @@ export default function Form({ icon, fieldsData, btnLabel, validate, onSubmit, c
                             type={ type } 
                             value={ formik.values[name] } 
                             onChange={ formik.handleChange }
+                            message={ formik.errors[name] }
                         />
                     )
                 })
@@ -50,11 +59,11 @@ export default function Form({ icon, fieldsData, btnLabel, validate, onSubmit, c
             <ButtonPrimary type='submit'>{ btnLabel }</ButtonPrimary>
 
             { children }
-        </FormWrapper>
+        </Wrapper>
     )
 }
 
-const FormWrapper = styled.form`
+const Wrapper = styled.form`
     background-color: #FFFFFFB6;
     border-radius: 10px;
     padding: 60px 20px 20px;
@@ -66,7 +75,7 @@ const FormWrapper = styled.form`
     backdrop-filter: blur(10px);
     position: relative;
 
-    p {
+    &>p:nth-last-of-type(1) {
         margin-top: 1rem;
         
         a {
