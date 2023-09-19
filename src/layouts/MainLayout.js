@@ -18,7 +18,7 @@ export default function MainLayout() {
 
 const Wrapper = styled.div`
     display: flex;
-    min-height: 100%;
+    min-height: 100vh;
 
     main {
         background-image: url(${ bgPattern });

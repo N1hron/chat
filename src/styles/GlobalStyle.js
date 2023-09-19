@@ -38,8 +38,12 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
-    body, #root {
-        height: 0;
+    body {
+        min-height: 100vh;
+        background-color: var(--secondary-color-3);
+    }
+
+    #root {
         min-height: 100vh;
     }
 
