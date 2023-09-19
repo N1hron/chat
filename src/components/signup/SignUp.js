@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import Form from '../form/Form'
@@ -11,10 +10,6 @@ import useAuth from '../../hooks/auth.hook'
 
 export default function SignUp() {
     const { status, handleSignUp } = useAuth()
-
-    useEffect(() => {
-        console.log(status)
-    }, [status])
 
     return (
         <Form
