@@ -53,6 +53,7 @@ const Wrapper = styled.form`
     background-color: #FFFFFFB6;
     border-radius: 10px;
     padding: 60px 20px 20px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;

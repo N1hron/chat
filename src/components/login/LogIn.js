@@ -1,15 +1,9 @@
 import { Link } from 'react-router-dom'
-import * as Yup from 'yup'
 
-import Form from '../components/form/Form'
-import { ReactComponent as LogInIcon } from '../assets/icons/login.svg'
-import { loginFieldData } from '../data/FormFieldData'
-
-
-const validationSchema = Yup.object({
-    'email': Yup.string().email('Invalid email').required('This field is required'),
-    'password': Yup.string().min(6, 'Password is too short!').required('This field is required')
-})
+import Form from '../form/Form'
+import { ReactComponent as LogInIcon } from '../../assets/icons/login.svg'
+import { loginFieldData } from '../../data/FormFieldData'
+import validationSchema from './validationSchema'
 
 export default function LogIn() {
     return (
