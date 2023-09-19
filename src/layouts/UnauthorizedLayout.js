@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 import { Outlet } from 'react-router-dom'
 
+
 export const Wrapper = styled.div`
     position: relative;
     width: 100%;

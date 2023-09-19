@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 
-import { ReactComponent as LogoIcon } from '../resources/icons/logo.svg'
+import { ReactComponent as LogoIcon } from '../assets/icons/logo.svg'
+
 
 export default function Logo() {
     return (

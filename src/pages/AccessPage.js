@@ -1,7 +1,8 @@
 import { styled } from 'styled-components'
 
 import Logo from '../components/Logo'
-import { Button, ButtonPrimary } from '../components/Button'
+import { LinkButton, LinkButtonPrimary } from '../components/buttons'
+
 
 export default function AccessPage() {
     return (
@@ -9,8 +10,9 @@ export default function AccessPage() {
             <LogoContainer>
                 <Logo/>
             </LogoContainer>
-            <Button>Log in</Button>
-            <ButtonPrimary>Sign up</ButtonPrimary>
+
+            <LinkButton to='/unauthorized/login'>Log in</LinkButton>
+            <LinkButtonPrimary to='/unauthorized/signup'>Sign up</LinkButtonPrimary>
         </Wrapper>
     )
 }

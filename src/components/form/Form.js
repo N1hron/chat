@@ -1,45 +1,31 @@
-import { useEffect } from 'react'
 import { useFormik } from 'formik'
 import { styled } from 'styled-components'
-import * as Yup from 'yup'
 
 import FormField from './FormField'
-import { ButtonPrimary } from '../Button'
+import { ButtonPrimary } from '../buttons'
 
-const defaultValidationSchema = Yup.object({
-    'email': Yup.string().email('Invalid email').required('This field is required'),
-    'password': Yup.string().min(6, 'Password is too short!').required('This field is required'),
-    'username': Yup.string().min(3, 'Username is too short!').required('This field is required'),
-    'passwordConfirm': Yup.string().oneOf([Yup.ref('password')], 'Passwords don\'t match').required('This field is required')
-})
 
-export default function Form({ icon, fieldsData, btnLabel, validationSchema, onSubmit, children }) {
+export default function Form({ icon, fieldData, btnLabel, validationSchema, onSubmit, children }) {
     const formik = useFormik({
         initialValues: setInitialValues(),
-        validationSchema: validationSchema || defaultValidationSchema,
+        validationSchema,
         onSubmit
     })
 
     function setInitialValues() {
         const initialValues = {}
     
-        fieldsData.forEach(data => {
-            initialValues[data.name] = ''
-        })
-    
+        fieldData.forEach(data => initialValues[data.name] = '')
+        
         return initialValues
     }
-
-    useEffect(() => {
-        console.log(formik.initialValues)
-    }, [])
 
     return (
         <Wrapper onSubmit={ formik.handleSubmit }>
             { icon ? <IconContainer>{ icon }</IconContainer> : null }
 
             {
-                fieldsData.map(data => {
+                fieldData.map(data => {
                     const { label, name, type } = data
                     
                     return (
