@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
-import interRegular from '../resources/fonts/Inter-Regular.ttf'
-import interBold from '../resources/fonts/Inter-Bold.ttf'
+import interRegular from '../assets/fonts/Inter-Regular.ttf'
+import interBold from '../assets/fonts/Inter-Bold.ttf'
+
 
 const GlobalStyle = createGlobalStyle`
     @font-face {

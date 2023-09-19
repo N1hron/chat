@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
-import bgPattern from '../resources/icons/pattern-4.svg'
+import bgPattern from '../assets/icons/pattern-4.svg'
+
 
 import Sidebar from '../components/Sidebar'
 

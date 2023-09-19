@@ -1,12 +1,13 @@
 import { styled } from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as LogOutIcon } from '../resources/icons/logout.svg'
-import { ReactComponent as ProfileIcon } from '../resources/icons/profile.svg'
-import { ReactComponent as ChatIcon } from '../resources/icons/chat.svg'
+import { ReactComponent as LogOutIcon } from '../assets/icons/logout.svg'
+import { ReactComponent as ProfileIcon } from '../assets/icons/profile.svg'
+import { ReactComponent as ChatIcon } from '../assets/icons/chat.svg'
 import { StyledLink } from './StyledLink'
-import { Button } from './Button'
+import { Button } from './buttons'
 import Logo from './Logo'
+
 
 export default function Sidebar() {
     return (
@@ -24,9 +25,9 @@ export default function Sidebar() {
                         </StyledLink>
                     </li>
                     <li>
-                        <StyledLink to='/chat'>
+                        <StyledLink to='/messages'>
                             <ChatIcon/>
-                            Chat
+                            Messages
                         </StyledLink>
                     </li>
                 </ul>
@@ -34,14 +35,14 @@ export default function Sidebar() {
             
             <Button>
                 <LogOutIcon/>
-                Log Out
+                Log out
             </Button>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.aside`
-    height: 100%;
+    min-height: 100%;
     background-color: ${({ theme }) => theme.colors['primary']};
     max-width: 300px;
     flex-grow: 1;

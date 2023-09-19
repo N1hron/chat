@@ -1,6 +1,7 @@
-import { styled } from 'styled-components'
+import { css } from 'styled-components'
 
-export const Button = styled.button`
+
+export const buttonStyles = css`
     padding: 0.5rem 0.75rem;
     border-radius: 0.75rem;
     background: none;
@@ -37,7 +38,7 @@ export const Button = styled.button`
     }
 `
 
-export const ButtonPrimary = styled(Button)`
+export const buttonPrimaryStyles = css`
     background-color: var(--accent-color-1);
 
     &:hover {

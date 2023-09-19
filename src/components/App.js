@@ -3,13 +3,15 @@ import { Routes, Route } from 'react-router-dom'
 
 import { themes } from '../styles/themes'
 import GlobalStyle from '../styles/GlobalStyle'
+
 import MainLayout from '../layouts/MainLayout'
 import UnauthorizedLayout from '../layouts/UnauthorizedLayout'
 import ProfilePage from '../pages/ProfilePage'
-import ChatPage from '../pages/ChatPage'
+import MessagesPage from '../pages/MessagesPage'
 import LogInPage from '../pages/LogInPage'
 import SignUpPage from '../pages/SignUpPage'
 import AccessPage from '../pages/AccessPage'
+
 
 function App() {
     return (
@@ -19,7 +21,7 @@ function App() {
             <Routes>
                 <Route path='/' element={ <MainLayout/> }>
                     <Route path='/profile' element={ <ProfilePage/> }/>
-                    <Route path='/chat' element={ <ChatPage/> }/>
+                    <Route path='/messages' element={ <MessagesPage/> }/>
                 </Route>
 
                 <Route path='/unauthorized' element={ <UnauthorizedLayout/> }>

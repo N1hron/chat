@@ -1,8 +1,9 @@
 import MainSectionLayout from '../layouts/MainSectionLayout'
 
-export default function ChatPage() {
+
+export default function MessagesPage() {
     return (
-        <MainSectionLayout title='Chat'>
+        <MainSectionLayout title='Messages'>
             
         </MainSectionLayout>
     )

@@ -1,7 +1,8 @@
 import { styled } from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as ProfileIcon } from '../resources/icons/profile-picture.svg'
+import { ReactComponent as ProfileIcon } from '../assets/icons/profile-picture.svg'
+
 
 export default function Header({ title }) {
     return (

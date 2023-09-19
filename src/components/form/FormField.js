@@ -1,6 +1,9 @@
 import { useId } from 'react'
 import { styled } from 'styled-components'
 
+import { FormMessage } from './FormMessage'
+
+
 export default function FormField({ label, name, type, value = '', onChange, message = null }) {
     const id = useId()
 
@@ -16,15 +19,10 @@ export default function FormField({ label, name, type, value = '', onChange, mes
                 onChange={ onChange }
                 autoComplete='off'
             />
-            { message && <Message>{ message }</Message> } 
+            { message && <FormMessage>{ message }</FormMessage> } 
         </Wrapper>
     )
 }
-
-const Message = styled.p`
-    color: var(--accent-color-1);
-    margin-top: 0.5rem;
-`
 
 const Wrapper = styled.div`
     max-width: 250px;
