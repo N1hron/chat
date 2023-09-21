@@ -7,10 +7,11 @@ import { FormMessage } from '../form/FormMessage'
 import validationSchema from './validationSchema'
 import useAuth from '../../hooks/auth.hook'
 
-import { getAuth } from 'firebase/auth'
+// import { getAuth } from 'firebase/auth'
+
 
 export default function LogIn() {
-    console.log(getAuth().currentUser)
+    // console.log(getAuth().currentUser)
     const { status, handleLogIn } = useAuth()
 
     return (

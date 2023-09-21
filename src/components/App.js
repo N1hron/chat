@@ -11,6 +11,7 @@ import MessagesPage from '../pages/MessagesPage'
 import LogInPage from '../pages/LogInPage'
 import SignUpPage from '../pages/SignUpPage'
 import AccessPage from '../pages/AccessPage'
+import RequireAuth from './RequireAuth'
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
             <GlobalStyle/>
 
             <Routes>
-                <Route path='/' element={ <MainLayout/> }>
+                <Route path='/' element={ <RequireAuth><MainLayout/></RequireAuth> }>
                     <Route path='/profile' element={ <ProfilePage/> }/>
                     <Route path='/messages' element={ <MessagesPage/> }/>
                 </Route>
