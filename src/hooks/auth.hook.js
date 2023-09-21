@@ -5,10 +5,17 @@ import {
     signInWithEmailAndPassword, 
     updateProfile
 } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
+
+import { useDispatch } from 'react-redux'
+import { setUser } from '../store/slices/userSlice'
 
 
 export default function useAuth() {
     const { status, setLoading, setSuccess, setError } = useStatus()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const auth = getAuth()
 
     function handleSignUp({ email, password, username }) {
@@ -37,9 +44,17 @@ export default function useAuth() {
 
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                console.log(user)
-                
+                const data = { 
+                    email: user.email, 
+                    username: user.displayName,
+                    id: user.uid,
+                    token: user.accessToken
+                }
+                console.log(data)
+
+                dispatch(setUser(data))
                 setSuccess()
+                navigate('/')
             })
             .catch(({ message, code }) => {
                 console.error(`${ message }: ${ code }`)
