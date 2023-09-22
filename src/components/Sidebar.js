@@ -7,9 +7,12 @@ import { ReactComponent as ChatIcon } from '../assets/icons/chat.svg'
 import { StyledLink } from './StyledLink'
 import { Button } from './buttons'
 import Logo from './Logo'
+import useAuth from '../hooks/auth.hook'
 
 
 export default function Sidebar() {
+    const { handleLogOut } = useAuth()
+
     return (
         <Wrapper>
             <Link className='logo' to='/'>
@@ -33,7 +36,7 @@ export default function Sidebar() {
                 </ul>
             </Navigation>
             
-            <Button>
+            <Button onClick={ handleLogOut }>
                 <LogOutIcon/>
                 Log out
             </Button>

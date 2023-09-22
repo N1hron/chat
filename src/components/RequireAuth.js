@@ -1,10 +1,11 @@
-import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import { userSelector } from '../store/slices/userSlice'
+import { selectUser } from '../store/slices/userSlice'
+
 
 export default function RequireAuth({ children }) {
-    const { email } = useSelector(userSelector)
-
-    return email ? children : <Navigate to='/unauthorized/login' replace/>
+    const { username } = useSelector(selectUser)
+    
+    return username ? children : <Navigate to='/unauthorized' replace/>
 }

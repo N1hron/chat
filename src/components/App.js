@@ -1,8 +1,7 @@
-import { ThemeProvider } from 'styled-components'
 import { Routes, Route } from 'react-router-dom'
-
-import { themes } from '../styles/themes'
-import GlobalStyle from '../styles/GlobalStyle'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import MainLayout from '../layouts/MainLayout'
 import UnauthorizedLayout from '../layouts/UnauthorizedLayout'
@@ -12,27 +11,45 @@ import LogInPage from '../pages/LogInPage'
 import SignUpPage from '../pages/SignUpPage'
 import AccessPage from '../pages/AccessPage'
 import RequireAuth from './RequireAuth'
+import RequireUnauthorized from './RequireUnauthorized'
+import StatusMessage from './StatusMessage'
+import { setUser } from '../store/slices/userSlice'
 
 
 function App() {
-    
+    const [initialLoading, setInitialLoading] = useState(true)
+    const dispatch = useDispatch()
+
+    useEffect(onInitialLoading, [])
+
+    function onInitialLoading() {
+        onAuthStateChanged(getAuth(), user => {
+            if (user) {
+                dispatch(setUser({ 
+                    email: user.email, 
+                    username: user.displayName,
+                    id: user.uid,
+                    token: user.accessToken
+                }))
+            }
+            setInitialLoading(false)
+        })
+    }
+
     return (
-        <ThemeProvider theme={ themes.main }>
-            <GlobalStyle/>
+        initialLoading ? <StatusMessage type='loading'/> :
+        <Routes>
+            <Route path='/' element={ <RequireAuth><MainLayout/></RequireAuth> }>
+                <Route path='/profile' element={ <ProfilePage/> }/>
+                <Route path='/messages' element={ <MessagesPage/> }/>
+            </Route>
 
-            <Routes>
-                <Route path='/' element={ <RequireAuth><MainLayout/></RequireAuth> }>
-                    <Route path='/profile' element={ <ProfilePage/> }/>
-                    <Route path='/messages' element={ <MessagesPage/> }/>
-                </Route>
-
-                <Route path='/unauthorized' element={ <UnauthorizedLayout/> }>
-                    <Route index element={ <AccessPage/> }/>
-                    <Route path='/unauthorized/login' element={ <LogInPage/> }/>
-                    <Route path='/unauthorized/signup' element={ <SignUpPage/> }/>
-                </Route>
-            </Routes>
-        </ThemeProvider>
+            <Route path='/unauthorized' element={ <RequireUnauthorized><UnauthorizedLayout/></RequireUnauthorized> }>
+                <Route index element={ <AccessPage/> }/>
+                <Route path='/unauthorized/login' element={ <LogInPage/> }/>
+                <Route path='/unauthorized/signup' element={ <SignUpPage/> }/>
+            </Route>
+        </Routes>
     )
 }
 
