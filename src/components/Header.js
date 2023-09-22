@@ -9,7 +9,7 @@ export default function Header({ title }) {
         <Wrapper>
             <h2>{ title }</h2>
             <ProfilePicture>
-                <Link to='/home/profile'>
+                <Link to='/profile'>
                     <ProfileIcon className='profile-picture'/>
                 </Link>
             </ProfilePicture>

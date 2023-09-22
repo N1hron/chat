@@ -1,14 +1,15 @@
-import useStatus from './status.hook'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { 
     getAuth, 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
+    signOut,
     updateProfile
 } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
 
-import { useDispatch } from 'react-redux'
-import { setUser } from '../store/slices/userSlice'
+import useStatus from './status.hook'
+import { setUser, removeUser } from '../store/slices/userSlice'
 
 
 export default function useAuth() {
@@ -18,24 +19,28 @@ export default function useAuth() {
 
     const auth = getAuth()
 
+    function handleLogOut() {
+        signOut(auth)
+            .then(() => {
+                dispatch(removeUser())
+            })
+            .catch(console.error)
+    }
+
     function handleSignUp({ email, password, username }) {
         setLoading()
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                updateProfile(user, {
-                    displayName: username
-                })
-
-                console.log(user)
+                updateProfile(user, { displayName: username })
 
                 setSuccess()
+                navigate('/unauthorized/login')
             })
             .catch(({ message, code }) => {
                 console.error(`${ message }: ${ code }`)
-                
-                if (code === 'auth/email-already-in-use') setError('This email is already in use')
-                else setError()
+
+                setError(code === 'auth/email-already-in-use' ? 'This email is already in use' : '')
             })
     }
 
@@ -44,25 +49,22 @@ export default function useAuth() {
 
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                const data = { 
+                dispatch(setUser({ 
                     email: user.email, 
                     username: user.displayName,
                     id: user.uid,
                     token: user.accessToken
-                }
-                console.log(data)
+                }))
 
-                dispatch(setUser(data))
                 setSuccess()
                 navigate('/')
             })
             .catch(({ message, code }) => {
                 console.error(`${ message }: ${ code }`)
 
-                if (code === 'auth/invalid-login-credentials') setError('Invalid email or password')
-                else setError()
+                setError(code === 'auth/invalid-login-credentials' ? 'Wrong email or password' : '')
             });
     }
 
-    return { status, handleSignUp, handleLogIn }
+    return { status, handleSignUp, handleLogIn, handleLogOut }
 }
