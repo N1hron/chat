@@ -19,15 +19,15 @@ export default function Header({ title }) {
 
 const Wrapper = styled.header`
     background-color: #FFFFFFB6;
-    backdrop-filter: blur(10px);
     height: 80px;
     flex-grow: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     padding-right: 80px;
+    position: relative;
 
-    & h2 {
+    h2 {
         font-size: 2.5rem;
         color: var(--accent-color-2);
     }

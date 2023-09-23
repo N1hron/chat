@@ -1,12 +1,19 @@
 import { styled } from 'styled-components'
+import { motion } from 'framer-motion'
 
 import Logo from '../components/Logo'
 import { LinkButton, LinkButtonPrimary } from '../components/buttons'
+import { appearVariants as variants } from '../animations/variants'
 
 
 export default function AccessPage() {
     return (
-        <Wrapper>
+        <Wrapper
+            variants={ variants }
+            initial='hidden'
+            animate='visible'
+            transition={{ delay: 0.1, duration: 0.2 }}
+        >
             <LogoContainer>
                 <Logo/>
             </LogoContainer>
@@ -17,7 +24,7 @@ export default function AccessPage() {
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     background-color: var(--primary-color);
     padding: 20px;
     border-radius: 20px;

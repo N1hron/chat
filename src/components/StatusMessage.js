@@ -1,28 +1,45 @@
 import styled from 'styled-components'
+import { useRef, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 import { ReactComponent as SpinnerIcon } from '../assets/icons/spinner.svg'
+import { ReactComponent as SuccessIcon } from '../assets/icons/done.svg'
+import { ReactComponent as ErrorIcon } from '../assets/icons/error.svg'
+import { appearVariants as variants } from '../animations/variants'
 
-export default function StatusMessage({ children, type }) {
+
+const icons = {
+    'loading': <SpinnerIcon/>,
+    'success': <SuccessIcon/>,
+    'error': <ErrorIcon/>
+}
+
+export default function StatusMessage({ children, type, setIsStatusMessagePresent }) {
+    const messageRef = useRef()
+
+    useEffect(() => {
+        const height = getComputedStyle(messageRef.current).height
+        messageRef.current.style.minWidth = height
+    }, [])
+
     return (
         <Wrapper>
-            <Container>
-                { setIcon(type) }
+            <Container 
+                variants={ variants }
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.1, duration: 0.1 }}
+                ref={ messageRef }
+            >
+                { type && icons[type] }
                 { children }
             </Container>
         </Wrapper>
     )
 }
 
-function setIcon(type) {
-    switch (type) {
-        case 'loading':
-            return <SpinnerIcon/>
-        default: 
-            return null
-    }
-}
-
-const Container = styled.div`
+const Container = styled(motion.div)`
     background-color: #FFFFFFB6;
     border-radius: 10px;
     padding: 20px;
@@ -31,15 +48,15 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    color: var(--accent-color-2);
+    color: var(--accent-color-1);
     backdrop-filter: blur(10px);
     font-size: 1.5rem;
-    width: 200px;
-    aspect-ratio: 1;
+    text-align: center;
+    font-weight: 500;
 
     svg {
-        width: 80%;
-        height: max-content;
+        width: 100px;
+        height: auto;
         fill: var(--accent-color-1)
     }
 `
