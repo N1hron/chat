@@ -1,27 +1,28 @@
 import { useFormik } from 'formik'
 import { styled } from 'styled-components'
+import { motion } from 'framer-motion'
 
 import FormField from './FormField'
+import { FormMessage } from './FormMessage'
 import { ButtonPrimary } from '../buttons'
+import { appearVariants as variants } from '../../animations/variants'
 
 
-export default function Form({ icon, fieldData, btnLabel, validationSchema, onSubmit, children }) {
+export default function Form({ icon, fieldData, btnLabel, validationSchema, onSubmit, children, formMessage }) {
     const formik = useFormik({
-        initialValues: setInitialValues(),
+        initialValues: setInitialValues(fieldData),
         validationSchema,
         onSubmit
     })
 
-    function setInitialValues() {
-        const initialValues = {}
-    
-        fieldData.forEach(data => initialValues[data.name] = '')
-        
-        return initialValues
-    }
-
     return (
-        <Wrapper onSubmit={ formik.handleSubmit }>
+        <Wrapper 
+            variants={ variants }
+            initial='hidden'
+            animate='visible'
+            transition={{ delay: 0.1, duration: 0.2 }}
+            onSubmit={ formik.handleSubmit }
+        >
             { icon ? <IconContainer>{ icon }</IconContainer> : null }
 
             {
@@ -43,13 +44,21 @@ export default function Form({ icon, fieldData, btnLabel, validationSchema, onSu
             }
 
             <ButtonPrimary type='submit'>{ btnLabel }</ButtonPrimary>
-
+            {formMessage && <FormMessage>{ formMessage }</FormMessage>}
             { children }
         </Wrapper>
     )
 }
 
-const Wrapper = styled.form`
+function setInitialValues(fieldData) {
+    const initialValues = {}
+
+    fieldData.forEach(data => initialValues[data.name] = '')
+    
+    return initialValues
+}
+
+const Wrapper = styled(motion.form)`
     background-color: #FFFFFFB6;
     border-radius: 10px;
     padding: 60px 20px 20px;
@@ -59,7 +68,6 @@ const Wrapper = styled.form`
     align-items: center;
     gap: 1rem;
     color: ${({ theme }) => theme.colors['accent-2']};
-    backdrop-filter: blur(10px);
     position: relative;
 
     &>p:nth-last-of-type(1) {

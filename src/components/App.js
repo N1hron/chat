@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { AnimatePresence } from 'framer-motion'
 
 import MainLayout from '../layouts/MainLayout'
 import UnauthorizedLayout from '../layouts/UnauthorizedLayout'
@@ -18,6 +19,7 @@ import { setUser } from '../store/slices/userSlice'
 
 function App() {
     const [initialLoading, setInitialLoading] = useState(true)
+    const [showMain, setShowMain] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(onInitialLoading, [])
@@ -32,24 +34,54 @@ function App() {
                     token: user.accessToken
                 }))
             }
-            setInitialLoading(false)
+            new Promise(resolve => {
+                setTimeout(() => {
+                    setInitialLoading(false)
+                    resolve()
+                }, 1000)
+            }).then(() => {
+                setTimeout(() => {
+                    setShowMain(true)
+                }, 200)
+            })
         })
     }
 
     return (
-        initialLoading ? <StatusMessage type='loading'/> :
-        <Routes>
-            <Route path='/' element={ <RequireAuth><MainLayout/></RequireAuth> }>
-                <Route path='/profile' element={ <ProfilePage/> }/>
-                <Route path='/messages' element={ <MessagesPage/> }/>
-            </Route>
+        <>
+            <AnimatePresence>
+                { initialLoading && <StatusMessage type='loading'>Loading</StatusMessage> }
+            </AnimatePresence>
+            {
+                showMain &&
+                <Routes>
+                    <Route 
+                        path='/' 
+                        element={ 
+                            <RequireAuth>
+                                <MainLayout/>
+                            </RequireAuth> 
+                        }
+                    >
+                        <Route path='/profile' element={ <ProfilePage/> }/>
+                        <Route path='/messages' element={ <MessagesPage/> }/>
+                    </Route>
 
-            <Route path='/unauthorized' element={ <RequireUnauthorized><UnauthorizedLayout/></RequireUnauthorized> }>
-                <Route index element={ <AccessPage/> }/>
-                <Route path='/unauthorized/login' element={ <LogInPage/> }/>
-                <Route path='/unauthorized/signup' element={ <SignUpPage/> }/>
-            </Route>
-        </Routes>
+                    <Route 
+                        path='/unauthorized' 
+                        element={ 
+                            <RequireUnauthorized>
+                                <UnauthorizedLayout/>
+                            </RequireUnauthorized> 
+                        }
+                    >
+                        <Route index element={ <AccessPage/> }/>
+                        <Route path='/unauthorized/login' element={ <LogInPage/> }/>
+                        <Route path='/unauthorized/signup' element={ <SignUpPage/> }/>
+                    </Route>
+                </Routes>
+            }
+        </>
     )
 }
 
