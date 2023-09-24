@@ -34,16 +34,11 @@ function App() {
                     token: user.accessToken
                 }))
             }
-            new Promise(resolve => {
-                setTimeout(() => {
-                    setInitialLoading(false)
-                    resolve()
-                }, 1000)
-            }).then(() => {
-                setTimeout(() => {
-                    setShowMain(true)
-                }, 200)
-            })
+            
+            setTimeout(() => {
+                setInitialLoading(false)
+                setTimeout(() => setShowMain(true), 200)
+            }, 1000)
         })
     }
 

@@ -19,7 +19,7 @@ export default function Sidebar() {
                 <Logo/>
             </Link>
 
-            <Navigation>
+            <StyledNav>
                 <ul>
                     <li>
                         <StyledLink to='/profile'>
@@ -34,7 +34,7 @@ export default function Sidebar() {
                         </StyledLink>
                     </li>
                 </ul>
-            </Navigation>
+            </StyledNav>
             
             <Button onClick={ handleLogOut }>
                 <LogOutIcon/>
@@ -76,7 +76,7 @@ const Wrapper = styled.aside`
     }
 `
 
-const Navigation = styled.nav`
+const StyledNav = styled.nav`
     ul {
         padding: 20px;
         list-style: none;
