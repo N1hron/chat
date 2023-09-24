@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import { ReactComponent as SpinnerIcon } from '../assets/icons/spinner.svg'
 import { ReactComponent as SuccessIcon } from '../assets/icons/done.svg'
 import { ReactComponent as ErrorIcon } from '../assets/icons/error.svg'
-import { appearVariants as variants } from '../animations/variants'
 
 
 const icons = {
@@ -25,7 +24,6 @@ export default function StatusMessage({ children, type, setIsStatusMessagePresen
     return (
         <Wrapper>
             <Container 
-                variants={ variants }
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
