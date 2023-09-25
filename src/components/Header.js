@@ -19,6 +19,8 @@ export default function Header({ title }) {
 
 const Wrapper = styled.header`
     background-color: #FFFFFFB6;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
     height: 80px;
     flex-grow: 0;
     display: flex;
