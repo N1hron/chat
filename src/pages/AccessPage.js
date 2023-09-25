@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 import Logo from '../components/Logo'
 import { LinkButton, LinkButtonPrimary } from '../components/buttons'
-import { appearVariants as variants } from '../animations/variants'
+import { modalAppearVariants as variants } from '../animations/variants'
 
 
 export default function AccessPage() {
