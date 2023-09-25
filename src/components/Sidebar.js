@@ -83,5 +83,6 @@ const StyledNav = styled.nav`
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        width: 100%;
     }
 `

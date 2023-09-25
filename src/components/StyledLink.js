@@ -1,10 +1,19 @@
 import { styled } from 'styled-components'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
     font-size: 1.75rem;
     gap: 0.5rem;
+    border-radius: 10px;
+
+    &.active {
+        color: var(--accent-color-1);
+
+        svg {
+            fill: var(--accent-color-1);
+        }
+    }
 
     svg {
         transition: fill 0.15s;
