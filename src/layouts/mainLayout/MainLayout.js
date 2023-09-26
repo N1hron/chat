@@ -2,15 +2,17 @@ import { Outlet } from 'react-router-dom'
 
 import Sidebar from '../../components/sidebar/Sidebar'
 import * as S from './style'
+import { appearVariants as variants } from '../../animations/variants'
 
 
 export default function MainLayout() {
     return (
         <S.MainLayout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ delay: 0.1, duration: 0.25 }}
+            variants={ variants }
+            initial='hidden'
+            animate='visible'
+            exit='hidden'
+            transition={{ duration: 0.25 }}
         >
             <Sidebar/>
             <main>
