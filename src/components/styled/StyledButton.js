@@ -17,7 +17,9 @@ const buttonStyles = css`
     gap: 0.5rem;
 
     svg {
-        width: 3rem;
+        height: 100%;
+        fill: #FFF;
+        width: auto;
         transition: fill 0.15s;
     }
 
@@ -46,6 +48,10 @@ const buttonPrimaryStyles = css`
     &:hover {
         color: #FFF;
         background-color: var(--accent-color-1-darker);
+
+        svg {
+            fill: #FFF;
+        }
     }
 `
 

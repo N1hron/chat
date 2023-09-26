@@ -17,7 +17,7 @@ export default function LogIn() {
             btnLabel='Log in'
             onSubmit={ handleLogIn }
             validationSchema={ validationSchema }
-            formMessage={ status.type === 'error' && status.message }
+            status={ status }
         >
             <p>Or create new account: <Link to='/unauthorized/signup'>Sign up</Link></p>
         </Form>
