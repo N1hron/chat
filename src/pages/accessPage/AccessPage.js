@@ -1,4 +1,4 @@
-import * as StyledButton from '../../components/styled/StyledButton'
+import * as Button from '../../components/styled/Button'
 import * as S from './style'
 import Logo from '../../components/logo/Logo'
 import { modalAppearVariants as variants } from '../../animations/variants'
@@ -16,8 +16,8 @@ export default function AccessPage() {
                 <Logo/>
             </S.LogoContainer>
 
-            <StyledButton.Link to='/unauthorized/login'>Log in</StyledButton.Link>
-            <StyledButton.LinkPrimary to='/unauthorized/signup'>Sign up</StyledButton.LinkPrimary>
+            <Button.Link to='/unauthorized/login'>Log in</Button.Link>
+            <Button.LinkPrimary to='/unauthorized/signup'>Sign up</Button.LinkPrimary>
         </S.AccessPage>
     )
 }

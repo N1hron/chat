@@ -7,12 +7,14 @@ import { ReactComponent as ProfileIcon } from '../../assets/icons/profile-pictur
 export default function Header({ title }) {
     return (
         <S.Header>
-            <h2>{ title }</h2>
-            <S.ProfilePicture>
-                <Link to='/profile'>
-                    <ProfileIcon className='profile-picture'/>
-                </Link>
-            </S.ProfilePicture>
+            <S.Content>
+                <h2>{ title }</h2>
+                <S.ProfilePicture>
+                    <Link to='/profile'>
+                        <ProfileIcon className='profile-picture'/>
+                    </Link>
+                </S.ProfilePicture>
+            </S.Content>
         </S.Header>
     )
 }

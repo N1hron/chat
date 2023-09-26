@@ -19,8 +19,7 @@ export default function CheckUser({ children }) {
                 dispatch(setUser({ 
                     email: user.email, 
                     username: user.displayName,
-                    id: user.uid,
-                    token: user.accessToken
+                    id: user.uid
                 }))
             }
             

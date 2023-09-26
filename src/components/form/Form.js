@@ -4,11 +4,11 @@ import { useEffect, useRef } from 'react'
 import Modal from '../modal/Modal'
 import Field from './Field'
 import * as S from './style'
-import * as StyledButton from '../styled/StyledButton'
+import * as Button from '../styled/Button'
 import { ReactComponent as SpinnerIcon } from '../../assets/icons/spinner.svg'
 
 
-export default function Form({ icon, fieldData, btnLabel, validationSchema, onSubmit, children, formMessage, status }) {
+export default function Form({ icon, fieldData, btnLabel, validationSchema, onSubmit, children, status }) {
     const formik = useFormik({
         initialValues: setInitialValues(fieldData),
         validationSchema,
@@ -48,9 +48,9 @@ export default function Form({ icon, fieldData, btnLabel, validationSchema, onSu
                     })
                 }
 
-                <StyledButton.Primary type='submit' ref={ btnRef } disabled={ status.type === 'loading' }>
+                <Button.Primary type='submit' ref={ btnRef } disabled={ status.type === 'loading' }>
                     { status.type === 'loading' ? <SpinnerIcon/> : btnLabel }
-                </StyledButton.Primary>
+                </Button.Primary>
                 {status.type === 'error' && status.message && <S.Message>{ status.message }</S.Message>}
                 { children }
             </S.Form>
