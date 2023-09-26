@@ -1,24 +1,8 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { modalAppearVariants as variants } from '../animations/variants'
 
-
-export default function Modal({ children, icon }) {
-    return (
-        <Wrapper 
-            variants={ variants }
-            initial='hidden'
-            animate='visible'
-            $hasIcon={ !!icon }
-        >
-            { icon && <IconContainer>{ icon }</IconContainer> }
-            { children }
-        </Wrapper>
-    )
-}
-
-const Wrapper = styled(motion.div)`
+export const Modal = styled(motion.div)`
     position: relative;
     background-color: #FFFFFFB6;
     border-radius: 10px;
@@ -27,7 +11,7 @@ const Wrapper = styled(motion.div)`
     color: var(--accent-color-2);
 `
 
-const IconContainer = styled.div`
+export const IconContainer = styled.div`
     position: absolute;
     top: 0%;
     left: 50%;

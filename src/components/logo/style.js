@@ -1,18 +1,7 @@
 import { styled } from 'styled-components'
 
-import { ReactComponent as LogoIcon } from '../assets/icons/logo.svg'
 
-
-export default function Logo() {
-    return (
-        <Wrapper>
-            <LogoIcon/>
-            <h1><span>C</span>hat</h1>
-        </Wrapper>
-    )
-}
-
-const Wrapper = styled.div`
+export const Logo = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -20,7 +9,7 @@ const Wrapper = styled.div`
     color: #FFF;
 
     span {
-        color: ${({ theme }) => theme.colors['accent-1']}
+        color: var(--accent-color-1);
     }
 
     h1 {

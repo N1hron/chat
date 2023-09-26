@@ -1,4 +1,4 @@
-import MainSectionLayout from '../layouts/MainSectionLayout'
+import MainSectionLayout from '../../layouts/mainSectionLayout/MainSectionLayout'
 
 
 export default function ProfilePage() {

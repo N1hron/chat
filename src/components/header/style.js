@@ -1,23 +1,7 @@
 import { styled } from 'styled-components'
-import { Link } from 'react-router-dom'
-
-import { ReactComponent as ProfileIcon } from '../assets/icons/profile-picture.svg'
 
 
-export default function Header({ title }) {
-    return (
-        <Wrapper>
-            <h2>{ title }</h2>
-            <ProfilePicture>
-                <Link to='/profile'>
-                    <ProfileIcon className='profile-picture'/>
-                </Link>
-            </ProfilePicture>
-        </Wrapper>
-    )
-}
-
-const Wrapper = styled.header`
+export const Header = styled.header`
     background-color: #FFFFFFB6;
     backdrop-filter: blur(10px);
     overflow: hidden;
@@ -39,7 +23,7 @@ const Wrapper = styled.header`
     }
 `
 
-const ProfilePicture = styled.div`
+export const ProfilePicture = styled.div`
     position: absolute;
     background-color: var(--primary-color);
     height: 100%;

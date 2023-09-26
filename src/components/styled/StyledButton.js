@@ -1,7 +1,9 @@
+import { Link as ReactRouterLink } from 'react-router-dom'
+import { styled } from 'styled-components'
 import { css } from 'styled-components'
 
 
-export const buttonStyles = css`
+const buttonStyles = css`
     padding: 0.5rem 0.75rem;
     border-radius: 0.75rem;
     background: none;
@@ -38,7 +40,7 @@ export const buttonStyles = css`
     }
 `
 
-export const buttonPrimaryStyles = css`
+const buttonPrimaryStyles = css`
     background-color: var(--accent-color-1);
 
     &:hover {
@@ -46,3 +48,23 @@ export const buttonPrimaryStyles = css`
         background-color: var(--accent-color-1-darker);
     }
 `
+
+const StyledButton = styled.button`
+    ${ buttonStyles }
+`
+
+export const Primary = styled(StyledButton)`
+    ${ buttonPrimaryStyles }
+`
+
+export const Link = styled(ReactRouterLink)`
+    ${ buttonStyles }
+    text-decoration: none;
+`
+
+export const LinkPrimary = styled(Link)`
+    ${ buttonPrimaryStyles }
+`
+
+export default StyledButton
+
