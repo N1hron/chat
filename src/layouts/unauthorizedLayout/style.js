@@ -1,16 +1,7 @@
 import { styled } from 'styled-components'
-import { Outlet } from 'react-router-dom'
 
 
-export default function UnauthorizedLayout() {
-    return (
-        <Wrapper>
-            <Outlet/>
-        </Wrapper>
-    )
-}
-
-export const Wrapper = styled.div`
+export const UnauthorizedLayout = styled.div`
     position: relative;
     width: 100%;
     min-height: 100vh;

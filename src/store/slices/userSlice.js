@@ -38,7 +38,6 @@ const selectUser = createSelector(
 
 const { actions, reducer } = userSlice
 
-
 export default reducer
 export { selectUser }
 export const { setUser, removeUser } = actions

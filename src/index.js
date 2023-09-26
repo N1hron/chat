@@ -10,6 +10,7 @@ import './styles/normalize.css'
 import store from './store'
 import GlobalStyle from './styles/GlobalStyle'
 import { themes } from './styles/themes'
+import CheckUser from './components/CheckUser'
 
 
 createRoot(document.getElementById('root')).render(
@@ -18,7 +19,9 @@ createRoot(document.getElementById('root')).render(
             <Provider store={ store }>
                 <ThemeProvider theme={ themes.main }>
                     <GlobalStyle/>
-                    <App/>
+                    <CheckUser>
+                        <App/>
+                    </CheckUser>
                 </ThemeProvider>
             </Provider>
         </BrowserRouter>
