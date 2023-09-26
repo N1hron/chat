@@ -35,12 +35,12 @@ export default function useAuth() {
                 updateProfile(user, { displayName: username })
 
                 setSuccess()
-                navigate('/unauthorized/login')
+                navigate('/')
             })
             .catch(({ message, code }) => {
                 console.error(`${ message }: ${ code }`)
 
-                setError(code === 'auth/email-already-in-use' ? 'This email is already in use' : '')
+                setError(code === 'auth/email-already-in-use' ? 'This email is already in use' : 'Something went wrong...')
             })
     }
 
@@ -62,7 +62,7 @@ export default function useAuth() {
             .catch(({ message, code }) => {
                 console.error(`${ message }: ${ code }`)
 
-                setError(code === 'auth/invalid-login-credentials' ? 'Wrong email or password' : '')
+                setError(code === 'auth/invalid-login-credentials' ? 'Wrong email or password' : 'Something went wrong...')
             });
     }
 

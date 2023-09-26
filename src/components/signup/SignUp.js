@@ -17,7 +17,7 @@ export default function SignUp() {
             btnLabel='Sign up'
             onSubmit={ handleSignUp }
             validationSchema={ validationSchema }
-            formMessage={ status.type === 'error' && status.message }
+            status={ status }
         >
             <p>Already have an account? <Link to='/unauthorized/login'>Log in</Link></p>
         </Form>
