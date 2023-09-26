@@ -16,6 +16,8 @@ export const NavigationLink = styled(NavLink)`
     }
 
     svg {
+        fill: #FFF;
+        height: 100%;
         transition: fill 0.15s;
         width: 2.25rem;
     }
@@ -45,13 +47,12 @@ export const Sidebar = styled.aside`
     position: relative;
     z-index: 2;
 
-    svg {
-        fill: #FFF;
-        height: auto;
-    }
-
     nav {
         flex-grow: 1;
+    }
+
+    button {
+        align-self: stretch;
     }
 
     a {
