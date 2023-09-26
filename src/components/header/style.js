@@ -1,25 +1,27 @@
 import { styled } from 'styled-components'
+import Block from '../styled/Block'
 
+
+export const Content = styled(Block)`
+    display: flex;
+    align-items: center;
+    padding: 0;
+    position: relative;
+    height: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow: hidden;
+`
 
 export const Header = styled.header`
-    background-color: #FFFFFFB6;
-    backdrop-filter: blur(10px);
-    overflow: hidden;
-    height: 80px;
-    flex-grow: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 80px;
-    position: relative;
+    padding: 0px 15px 0;
+    
 
     h2 {
+        background-color: var(--primary-color);
+        padding: 1rem 2rem;
         font-size: 2.5rem;
-        color: var(--accent-color-2);
-    }
-
-    .profile-picture {
-        
+        color: #FFF;
     }
 `
 

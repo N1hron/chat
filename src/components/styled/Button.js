@@ -55,11 +55,11 @@ const buttonPrimaryStyles = css`
     }
 `
 
-const StyledButton = styled.button`
+const Button = styled.button`
     ${ buttonStyles }
 `
 
-export const Primary = styled(StyledButton)`
+export const Primary = styled(Button)`
     ${ buttonPrimaryStyles }
 `
 
@@ -72,5 +72,5 @@ export const LinkPrimary = styled(Link)`
     ${ buttonPrimaryStyles }
 `
 
-export default StyledButton
+export default Button
 
