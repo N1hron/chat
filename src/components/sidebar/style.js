@@ -6,12 +6,22 @@ export const NavigationLink = styled(NavLink)`
     font-size: 1.75rem;
     gap: 0.5rem;
     border-radius: 10px;
+    width: max-content;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; 
 
     &.active {
         color: var(--accent-color-1);
 
         svg {
             fill: var(--accent-color-1);
+        }
+
+        &:hover {
+            scale: initial;
         }
     }
 
@@ -22,9 +32,11 @@ export const NavigationLink = styled(NavLink)`
         width: 2.25rem;
     }
 
-    transition: color 0.15s;
+    transition: all 0.15s;
 
     &:hover {
+        scale: 1.05;
+
         color: var(--accent-color-1);
 
         svg {
@@ -36,8 +48,8 @@ export const NavigationLink = styled(NavLink)`
 export const Sidebar = styled.aside`
     min-height: 100%;
     background-color: ${({ theme }) => theme.colors['primary']};
-    max-width: 300px;
-    flex-grow: 1;
+    width: 300px;
+    flex-shrink: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -47,20 +59,16 @@ export const Sidebar = styled.aside`
     position: relative;
     z-index: 2;
 
+    a {
+        text-decoration: none;
+    }
+
     nav {
         flex-grow: 1;
     }
 
     button {
         align-self: stretch;
-    }
-
-    a {
-        text-decoration: none;
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 `
 
