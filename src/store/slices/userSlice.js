@@ -6,7 +6,7 @@ const initialState = {
     email: null,
     username: null,
     id: null,
-    photoUrl: 'https://sun9-44.userapi.com/impg/baVqGPgrfNuusT42x4AXx_8TlwhBSQ_OF5u2Dw/zoU0p3eyjxc.jpg?size=1650x2131&quality=95&sign=25ba674de385633d9a6f2c2d6f84b1b3&type=album'
+    photoUrl: ''
 }
 
 const userSlice = createSlice({

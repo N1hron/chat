@@ -19,12 +19,20 @@ export const AvatarContainer = styled.div`
     background-color: var(--primary-color);
     width: 100%;
     aspect-ratio: 1;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 
     img {
         width: 100%;
         height: 100%;
         aspect-ratio: 1;
         object-fit: cover;
+    }
+
+    svg {
+        fill: #FFF;
+        width: 100%;
+        height: auto;
     }
 `
 
