@@ -3,7 +3,16 @@ import { motion } from 'framer-motion'
 import * as Button from '../styled/Button'
 
 
-export const GoBackButton = styled(Button.Primary)`
+export const Buttons = styled.div`
+    display: flex;
+    gap: 1rem;
+
+    button:nth-child(1) {
+        flex-grow: 1;
+    }
+`
+
+export const GoBackButton = styled(Button.Light)`
     position: absolute;
     top: 0;
     left: -20px;
@@ -15,14 +24,14 @@ export const Content = styled(motion.div)`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    min-height: 375px;
-    max-height: 500px;
+    min-height: 400px;
     max-width: 700px;
     width: 100%;
 `
 
 export const Cropper = styled.div`
-    padding: 10px;
+    padding: 20px;
+    position: relative;
     background-color: #FFFFFFB6;
     border-radius: 10px;
     display: flex;
@@ -31,13 +40,24 @@ export const Cropper = styled.div`
     flex-grow: 1;
 
     img {
-        object-fit: contain;
-        max-width: 100%;
-        max-height: 500px;
+        height: 300px;
+        width: 300px;
+    }
+
+    .reactEasyCrop_Container {
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+
+        img {
+            width: auto;
+            height: auto;
+        }
     }
 `
 
-export const FileInput = styled.div`
+export const ImageDropArea = styled.div`
     input {
         display: none;
     }

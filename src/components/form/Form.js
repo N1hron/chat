@@ -48,9 +48,9 @@ export default function Form({ icon, fieldData, btnLabel, validationSchema, onSu
                     })
                 }
 
-                <Button.Primary type='submit' ref={ btnRef } disabled={ status.type === 'loading' }>
+                <Button.Light type='submit' ref={ btnRef } disabled={ status.type === 'loading' }>
                     { status.type === 'loading' ? <SpinnerIcon/> : btnLabel }
-                </Button.Primary>
+                </Button.Light>
                 {status.type === 'error' && status.message && <S.Message>{ status.message }</S.Message>}
                 { children }
             </S.Form>

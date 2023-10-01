@@ -42,7 +42,7 @@ const buttonStyles = css`
     }
 `
 
-const buttonPrimaryStyles = css`
+const buttonLightStyles = css`
     background-color: var(--accent-color-1);
 
     &:hover {
@@ -55,12 +55,29 @@ const buttonPrimaryStyles = css`
     }
 `
 
-const Button = styled.button`
+const buttonDarkStyles = css`
+    background-color: var(--primary-color);
+
+    &:hover {
+        color: #FFF;
+        background-color: var(--primary-color-darker);
+
+        svg {
+            fill: #FFF;
+        }
+    }
+`
+
+export const Transparent = styled.button`
     ${ buttonStyles }
 `
 
-export const Primary = styled(Button)`
-    ${ buttonPrimaryStyles }
+export const Light = styled(Transparent)`
+    ${ buttonLightStyles }
+`
+
+export const Dark = styled(Transparent)`
+    ${ buttonDarkStyles }
 `
 
 export const Link = styled(ReactRouterLink)`
@@ -69,8 +86,6 @@ export const Link = styled(ReactRouterLink)`
 `
 
 export const LinkPrimary = styled(Link)`
-    ${ buttonPrimaryStyles }
+    ${ buttonLightStyles }
 `
-
-export default Button
 

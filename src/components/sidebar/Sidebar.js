@@ -6,7 +6,7 @@ import { ReactComponent as LogOutIcon } from '../../assets/icons/logout.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/icons/profile.svg'
 import { ReactComponent as ChatIcon } from '../../assets/icons/chat.svg'
 import Logo from '../logo/Logo'
-import Button from '../styled/Button'
+import * as Button from '../styled/Button'
 
 
 export default function Sidebar() {
@@ -35,10 +35,10 @@ export default function Sidebar() {
                 </ul>
             </S.Navigation>
             
-            <Button onClick={ handleLogOut }>
+            <Button.Transparent onClick={ handleLogOut }>
                 <LogOutIcon/>
                 Log out
-            </Button>
+            </Button.Transparent>
         </S.Sidebar>
     )
 }

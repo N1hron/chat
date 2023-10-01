@@ -1,61 +1,65 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 
 import * as S from './style'
 import * as Button from '../styled/Button'
 import { modalAppearVariants as variants } from '../../animations/variants'
 import { ReactComponent as GoBackIcon } from '../../assets/icons/arrow-back.svg';
-import FileInput from './FileInput'
+import ImageDropArea from './ImageDropArea'
 import Overlay from '../overlay/Overlay'
+import ImageCropper from './ImageCropper'
+import getCroppedImg from './cropImage'
 
 
 export default function AvatarEditor({ goBack }) {
     const [imageSrc, setImageSrc] = useState(null)
-    const contentRef = useRef()
-    const inputRef = useRef()
+    const [croppedImage, setCroppedImage] = useState(null)
+    const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
 
-    useEffect(() => {
-        [
-            'drag', 
-            'dragend', 
-            'dragenter', 
-            'dragexit', 
-            'dragleave', 
-            'dragover', 
-            'dragstart', 
-            'drop'
-        ].forEach(event => contentRef.current.addEventListener(event, e => e.preventDefault()))
-    }, [])
-
-    function handleDrop(event) {
-        const files = event.dataTransfer.files
-        inputRef.current.files = files
-        
-        const src = URL.createObjectURL(inputRef.current.files[0])
-        setImageSrc(src)
+    const showCroppedImage = async () => {
+        try {
+          const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels)
+          console.log('donee', { croppedImage })
+          setCroppedImage(croppedImage)
+        } catch (e) {
+          console.error(e)
+        }
     }
 
+    const onAnotherImageSelect = () => {
+        setImageSrc(null)
+        setCroppedImage(null)
+        setCroppedAreaPixels(null)
+    }
+    
     return (
         <Overlay>
-
             <S.Content
                 variants={ variants }
                 initial='hidden'
                 animate='visible'
                 transition={{ duration: 0.2 }}
-                ref={ contentRef } 
-                onDrop={ handleDrop }
+                
             >
                 <S.Cropper>
                     {
-                        imageSrc ? <img src={ imageSrc } alt={ 'user\'s avatar' } /> : <FileInput ref={ inputRef } setImageSrc={ setImageSrc }/>
+                        imageSrc ? 
+                        (
+                            croppedImage ? <img src={ croppedImage } alt=''/> : 
+                            <ImageCropper imageSrc={ imageSrc } setCroppedAreaPixels={ setCroppedAreaPixels }/>
+                        ) :  <ImageDropArea setImageSrc={ setImageSrc }/>
                     }
                 </S.Cropper>
-                { imageSrc && <Button.Primary>Apply</Button.Primary> }
+                {
+                    imageSrc &&
+                    <S.Buttons>
+                        <Button.Light onClick={ showCroppedImage }>Apply</Button.Light>
+                        <Button.Dark onClick={ onAnotherImageSelect  }>Select another image</Button.Dark>
+                    </S.Buttons>
+                }
                 <S.GoBackButton onClick={ goBack }>
                     <GoBackIcon/>
                 </S.GoBackButton>
             </S.Content>
-
         </Overlay>
     )
 }
