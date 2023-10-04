@@ -1,16 +1,56 @@
-import useStatus from './status.hook'
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser } from '../store/slices/userSlice'
 import { doc, setDoc } from 'firebase/firestore'
-import { db } from '../firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { auth } from '../firebase'
+import { updateProfile } from 'firebase/auth'
 
+import useStatus from './status.hook'
+import { db, storage } from '../firebase'
+import { selectUser } from '../store/slices/userSlice'
 
 export default function useFirestore() {
-    const { status, setLoading, setSuccess, setError } = useStatus() 
+    const { status, setLoading, setSuccess, setError, setProgress, setIdle } = useStatus() 
+    const user = useSelector(selectUser)
+    const dispatch = useDispatch()
+    const { id } = user
     
-    function addUserToFirestore(uid, name) {
+    function addUserToDatabase(uid, name) {
         setDoc(doc(db, 'users', uid), {
             name: name
         })
     }
 
-    return { addUserToFirestore }
+    function updateAvatar(file, onFinish) {
+        const extension = file.type.split('/')[1]
+        const storageRef = ref(storage, `avatars/${id}.${extension}`);
+        
+        const uploadTask = uploadBytesResumable(storageRef, file)
+
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                setLoading()
+                setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+            },
+            (error) => {
+                setError()
+            }, 
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    updateProfile(auth.currentUser, { photoURL: downloadURL })
+                    .then(() => dispatch(setUser({ ...user, photoURL: auth.currentUser.photoURL })))
+                    .then(() => {
+                        setSuccess()
+                        
+                        setTimeout(() => {
+                            setIdle()
+                            if (onFinish) onFinish()
+                        }, 1250)
+                    })
+                })
+            }
+        )
+    }
+
+    return { addUserToDatabase, updateAvatar, status }
 }

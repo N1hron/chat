@@ -1,65 +1,73 @@
-import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 
 import * as S from './style'
-import * as Button from '../styled/Button'
 import { modalAppearVariants as variants } from '../../animations/variants'
 import { ReactComponent as GoBackIcon } from '../../assets/icons/arrow-back.svg';
-import ImageDropArea from './ImageDropArea'
 import Overlay from '../overlay/Overlay'
 import ImageCropper from './ImageCropper'
-import getCroppedImg from './cropImage'
+import useFirestore from '../../hooks/firestore.hook'
+import Buttons from './Buttons'
+import ImageDropArea from './ImageDropArea'
+import Confirm from './Confirm'
+import StatusMessage from '../statusMessage/StatusMessage'
+import { 
+    selectImageSrc, 
+    selectCroppedImage,
+    removeImageSrc,
+    removeCroppedImage,
+    removeCroppedAreaPixels
+} from '../../store/slices/avatarEditorSlice'
 
 
 export default function AvatarEditor({ goBack }) {
-    const [imageSrc, setImageSrc] = useState(null)
-    const [croppedImage, setCroppedImage] = useState(null)
-    const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+    const croppedImage = useSelector(selectCroppedImage),
+          imageSrc = useSelector(selectImageSrc)
 
-    const showCroppedImage = async () => {
-        try {
-          const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels)
-          console.log('donee', { croppedImage })
-          setCroppedImage(croppedImage)
-        } catch (e) {
-          console.error(e)
-        }
+    const { updateAvatar, status } = useFirestore()
+    const dispatch = useDispatch()
+
+    function resetAll() {
+        dispatch(removeImageSrc())
+        dispatch(removeCroppedImage())
+        dispatch(removeCroppedAreaPixels())
     }
 
-    const onAnotherImageSelect = () => {
-        setImageSrc(null)
-        setCroppedImage(null)
-        setCroppedAreaPixels(null)
+    function handleGoBack() {
+        if (croppedImage) dispatch(removeCroppedImage())
+        else {
+            dispatch(removeImageSrc())
+            goBack()
+        }
     }
     
     return (
         <Overlay>
-            <S.Content
+            <S.Wrapper
                 variants={ variants }
                 initial='hidden'
                 animate='visible'
-                transition={{ duration: 0.2 }}
-                
+                transition={{ duration: 0.2 }}  
             >
-                <S.Cropper>
+                <S.Content>
+                    { !imageSrc && <ImageDropArea/> }
+                    { imageSrc && !croppedImage && <ImageCropper/> }
+                    { croppedImage && status.type === 'idle' && <Confirm croppedImageSrc={ croppedImage.url }/> }
                     {
-                        imageSrc ? 
-                        (
-                            croppedImage ? <img src={ croppedImage } alt=''/> : 
-                            <ImageCropper imageSrc={ imageSrc } setCroppedAreaPixels={ setCroppedAreaPixels }/>
-                        ) :  <ImageDropArea setImageSrc={ setImageSrc }/>
+                        status.type !== 'idle' &&
+                        <StatusMessage type={ status.type }></StatusMessage>
                     }
-                </S.Cropper>
-                {
-                    imageSrc &&
-                    <S.Buttons>
-                        <Button.Light onClick={ showCroppedImage }>Apply</Button.Light>
-                        <Button.Dark onClick={ onAnotherImageSelect  }>Select another image</Button.Dark>
-                    </S.Buttons>
-                }
-                <S.GoBackButton onClick={ goBack }>
+                </S.Content>
+
+                <Buttons
+                    resetAll={ resetAll }
+                    updateAvatar={ updateAvatar }
+                    goBack={ goBack }
+                /> 
+
+                <S.GoBackButton onClick={ handleGoBack }>
                     <GoBackIcon/>
                 </S.GoBackButton>
-            </S.Content>
+            </S.Wrapper>
         </Overlay>
     )
 }

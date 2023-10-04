@@ -22,18 +22,16 @@ export default function StatusMessage({ children, type }) {
     }, [])
 
     return (
-        <S.Container>
-            <S.StatusMessage
-                variants={ variants } 
-                initial='hidden'
-                animate='visible'
-                exit='hidden'
-                transition={{ delay: 0.1, duration: 0.1 }}
-                ref={ messageRef }
-            >
-                { type && icons[type] }
-                { children }
-            </S.StatusMessage>
-        </S.Container>
+        <S.StatusMessage
+            variants={ variants } 
+            initial='hidden'
+            animate='visible'
+            exit='hidden'
+            transition={{ delay: 0.1, duration: 0.1 }}
+            ref={ messageRef }
+        >
+            { type && icons[type] }
+            { children }
+        </S.StatusMessage>
     )
 }

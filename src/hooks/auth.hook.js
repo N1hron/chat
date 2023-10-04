@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { 
-    getAuth, 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signOut,
     updateProfile
 } from 'firebase/auth'
 
+import { auth } from '../firebase'
 import useStatus from './status.hook'
 import useFirestore from './firestore.hook'
 import { setUser, removeUser } from '../store/slices/userSlice'
@@ -15,17 +15,16 @@ import { setUser, removeUser } from '../store/slices/userSlice'
 
 export default function useAuth() {
     const { status, setLoading, setSuccess, setError } = useStatus()
-    const { addUserToFirestore } = useFirestore()
+    const { addUserToDatabase } = useFirestore()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
-    const auth = getAuth()
 
     function onSuccess(user) {
         dispatch(setUser({ 
             email: user.email, 
             username: user.displayName,
-            id: user.uid
+            id: user.uid,
+            photoURL: user.photoURL
         }))
         setSuccess()
         navigate('/')
@@ -43,7 +42,7 @@ export default function useAuth() {
         createUserWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
                 updateProfile(user, { displayName: username })
-                    .then(() => addUserToFirestore(user.uid, user.displayName))
+                    .then(() => addUserToDatabase(user.uid, user.displayName))
                     .then(() => onSuccess(user))
             })
             .catch(({ message, code }) => {

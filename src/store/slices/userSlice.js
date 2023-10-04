@@ -6,7 +6,7 @@ const initialState = {
     email: null,
     username: null,
     id: null,
-    photoUrl: ''
+    photoURL: null
 }
 
 const userSlice = createSlice({
@@ -17,25 +17,26 @@ const userSlice = createSlice({
             state.email = action.payload.email
             state.id = action.payload.id
             state.username = action.payload.username
+            state.photoURL = action.payload.photoURL
         },
         removeUser: (state) => { 
             state.email = null
             state.id = null
             state.username = null
+            state.photoURL = null
         }
     }
 })
 
-const selectUser = createSelector(
+export const selectUser = createSelector(
     state => state.user.email,
     state => state.user.id,
     state => state.user.username,
-    state => state.user.photoUrl,
-    (email, id, username, photoUrl) => ({ email, id, username, photoUrl })
+    state => state.user.photoURL,
+    (email, id, username, photoURL) => ({ email, id, username, photoURL })
 )
 
 const { actions, reducer } = userSlice
 
 export default reducer
-export { selectUser }
 export const { setUser, removeUser } = actions

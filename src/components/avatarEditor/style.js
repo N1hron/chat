@@ -3,12 +3,20 @@ import { motion } from 'framer-motion'
 import * as Button from '../styled/Button'
 
 
+export const Confirm = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+`
+
 export const Buttons = styled.div`
     display: flex;
     gap: 1rem;
 
-    button:nth-child(1) {
+    button {
         flex-grow: 1;
+        flex-basis: 100%;
     }
 `
 
@@ -19,7 +27,7 @@ export const GoBackButton = styled(Button.Light)`
     transform: translateX(-100%);
 `
 
-export const Content = styled(motion.div)`
+export const Wrapper = styled(motion.div)`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -29,7 +37,7 @@ export const Content = styled(motion.div)`
     width: 100%;
 `
 
-export const Cropper = styled.div`
+export const Content = styled.div`
     padding: 20px;
     position: relative;
     background-color: #FFFFFFB6;

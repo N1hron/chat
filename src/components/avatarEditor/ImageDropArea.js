@@ -1,14 +1,16 @@
 import { useRef, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 import * as S from './style'
+import { setImageSrc } from '../../store/slices/avatarEditorSlice'
 import { ReactComponent as UploadIcon } from '../../assets/icons/upload.svg'
 
 
-export default function ImageDropArea({ setImageSrc }) {
-    const areaRef = useRef()
-    const inputRef = useRef()
+export default function ImageDropArea() {
+    const areaRef = useRef(),
+          inputRef = useRef()
 
-    const handleClick = () => inputRef.current.click()
+    const dispatch = useDispatch()
 
     useEffect(() => preventDefaultForDragAndDrop(areaRef.current), [])
 
@@ -23,13 +25,26 @@ export default function ImageDropArea({ setImageSrc }) {
 
     function handleChange() {
         const src = URL.createObjectURL(inputRef.current.files[0])
-        setImageSrc(src)
+        dispatch(setImageSrc(src))
     }
 
     return (
-        <S.ImageDropArea ref={ areaRef } onClick={ handleClick } onDrop={ handleDrop }>
-            <input onChange={ handleChange } ref={ inputRef } type='file' accept='image/*'/>
-            <p><UploadIcon/> Drop image here or click to select</p>
+        <S.ImageDropArea 
+            ref={ areaRef } 
+            onClick={ () => inputRef.current.click() } 
+            onDrop={ handleDrop }
+        >
+            <input 
+                onChange={ handleChange } 
+                ref={ inputRef } 
+                type='file' 
+                accept='image/*'
+            />
+
+            <p>
+                <UploadIcon/> 
+                Drop image here or click to select
+            </p>
         </S.ImageDropArea>
     )
 }

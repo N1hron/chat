@@ -15,11 +15,13 @@ export default function CheckUser({ children }) {
 
     function onInitialLoading() {
         onAuthStateChanged(getAuth(), user => {
+            console.log(user.photoURL)
             if (user) {
                 dispatch(setUser({ 
                     email: user.email, 
                     username: user.displayName,
-                    id: user.uid
+                    id: user.uid,
+                    photoURL: user.photoURL
                 }))
             }
             

@@ -12,7 +12,6 @@ export const Avatar = styled.div`
     width: 300px;
     display: flex;
     flex-direction: column;
-
 `
 
 export const AvatarContainer = styled.div`
@@ -21,6 +20,7 @@ export const AvatarContainer = styled.div`
     aspect-ratio: 1;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    overflow: hidden;
 
     img {
         width: 100%;
@@ -38,12 +38,11 @@ export const AvatarContainer = styled.div`
 
 export const Info = styled.div`
     display: flex;
-    gap: 20px;
     flex-direction: column;
     background-color: var(--primary-color);
-    border-radius: inherit;
-    padding: 1rem;
+    border-radius: 10px;
     height: max-content;
+    flex-grow: 1;
 `
 
 export const InfoFiled = styled.p`
