@@ -13,9 +13,8 @@ import StatusMessage from '../statusMessage/StatusMessage'
 import { 
     selectImageSrc, 
     selectCroppedImage,
-    removeImageSrc,
     removeCroppedImage,
-    removeCroppedAreaPixels
+    resetAvatarEditor
 } from '../../store/slices/avatarEditorSlice'
 
 
@@ -26,17 +25,11 @@ export default function AvatarEditor({ goBack }) {
     const { updateAvatar, status } = useFirestore()
     const dispatch = useDispatch()
 
-    function resetAll() {
-        dispatch(removeImageSrc())
-        dispatch(removeCroppedImage())
-        dispatch(removeCroppedAreaPixels())
-    }
-
     function handleGoBack() {
         if (croppedImage) dispatch(removeCroppedImage())
         else {
-            dispatch(removeImageSrc())
             goBack()
+            dispatch(resetAvatarEditor())
         }
     }
     
@@ -54,15 +47,22 @@ export default function AvatarEditor({ goBack }) {
                     { croppedImage && status.type === 'idle' && <Confirm croppedImageSrc={ croppedImage.url }/> }
                     {
                         status.type !== 'idle' &&
-                        <StatusMessage type={ status.type }></StatusMessage>
+                        <StatusMessage type={ status.type }>
+                            {
+                                status.type === 'loading' &&
+                                'Setting your new avatar...'
+                            }
+                        </StatusMessage>
                     }
                 </S.Content>
 
-                <Buttons
-                    resetAll={ resetAll }
-                    updateAvatar={ updateAvatar }
-                    goBack={ goBack }
-                /> 
+                {
+                    status.type === 'idle' &&
+                    <Buttons
+                        updateAvatar={ updateAvatar }
+                        goBack={ goBack }
+                    /> 
+                }
 
                 <S.GoBackButton onClick={ handleGoBack }>
                     <GoBackIcon/>

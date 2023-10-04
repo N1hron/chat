@@ -9,7 +9,7 @@ import SignUpPage from '../pages/SignUpPage'
 import AccessPage from '../pages/accessPage/AccessPage'
 import RequireAuth from './RequireAuth'
 import RequireUnauthorized from './RequireUnauthorized'
-import CheckUser from './CheckUser'
+import CheckUser from './checkUser/CheckUser'
 
 
 const router = createBrowserRouter(createRoutesFromElements(

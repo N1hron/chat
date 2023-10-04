@@ -6,7 +6,8 @@ import {
     selectCroppedAreaPixels, 
     selectCroppedImage, 
     selectImageSrc, 
-    getCroppedImage
+    getCroppedImage,
+    resetAvatarEditor
 } from '../../store/slices/avatarEditorSlice'
 
 
@@ -20,8 +21,8 @@ export default function Buttons({ updateAvatar, resetAll, goBack }) {
     async function handleConfirm() {
         if (croppedImage) {
             updateAvatar(croppedImage.blob, () => {
-                resetAll()
                 goBack()
+                dispatch(resetAvatarEditor())
             })
         }
         else dispatch(getCroppedImage({ imageSrc, croppedAreaPixels }))
@@ -36,7 +37,7 @@ export default function Buttons({ updateAvatar, resetAll, goBack }) {
             
             {
                 !croppedImage &&
-                <Button.Dark onClick={ resetAll  }>
+                <Button.Dark onClick={ () => dispatch(resetAvatarEditor())  }>
                     Select another image
                 </Button.Dark>
             }

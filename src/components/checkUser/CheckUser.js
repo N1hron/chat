@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { AnimatePresence } from 'framer-motion'
 
-import StatusMessage from './statusMessage/StatusMessage'
-import { setUser } from '../store/slices/userSlice'
+import * as S from './style'
+import StatusMessage from '../statusMessage/StatusMessage'
+import { setUser } from '../../store/slices/userSlice'
 
 export default function CheckUser({ children }) {
     const [userChecked, setUserChecked] = useState(false)
@@ -34,7 +35,12 @@ export default function CheckUser({ children }) {
 
     return (
         <AnimatePresence>
-            { !userChecked && <StatusMessage type='loading'>Loading</StatusMessage> }
+            { 
+                !userChecked && 
+                <S.StatusMessageContainer>
+                    <StatusMessage type='loading'>Loading</StatusMessage>
+                </S.StatusMessageContainer> 
+            }
             { showContent && children }
         </AnimatePresence>
     )

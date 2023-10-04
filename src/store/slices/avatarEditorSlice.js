@@ -23,7 +23,12 @@ const avatarEditorSlice = createSlice({
         setCroppedImage: (state, action) => { state.croppedImage = action.payload },
         removeCroppedImage: state => { state.croppedImage = null },
         setCroppedAreaPixels: (state, action) => { state.croppedAreaPixels = action.payload },
-        removeCroppedAreaPixels: state => { state.croppedAreaPixels = null } 
+        removeCroppedAreaPixels: state => { state.croppedAreaPixels = null },
+        resetAvatarEditor: state => { 
+            state.imageSrc = null 
+            state.croppedImage = null
+            state.croppedAreaPixels = null
+        }
     },
     extraReducers: builder => {
         builder
@@ -46,5 +51,6 @@ export const {
     setCroppedImage,
     removeCroppedImage,
     setCroppedAreaPixels,
-    removeCroppedAreaPixels
+    removeCroppedAreaPixels,
+    resetAvatarEditor
 } = actions
