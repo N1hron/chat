@@ -16,7 +16,6 @@ export default function CheckUser({ children }) {
 
     function onInitialLoading() {
         onAuthStateChanged(getAuth(), user => {
-        
             if (user) {
                 dispatch(setUser({ 
                     email: user.email, 
