@@ -16,7 +16,7 @@ export default function CheckUser({ children }) {
 
     function onInitialLoading() {
         onAuthStateChanged(getAuth(), user => {
-            console.log(user.photoURL)
+        
             if (user) {
                 dispatch(setUser({ 
                     email: user.email, 

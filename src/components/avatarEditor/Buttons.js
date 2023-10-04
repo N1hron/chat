@@ -11,7 +11,7 @@ import {
 } from '../../store/slices/avatarEditorSlice'
 
 
-export default function Buttons({ updateAvatar, resetAll, goBack }) {
+export default function Buttons({ updateAvatar, goBack }) {
     const imageSrc = useSelector(selectImageSrc),
           croppedAreaPixels= useSelector(selectCroppedAreaPixels),
           croppedImage = useSelector(selectCroppedImage)
