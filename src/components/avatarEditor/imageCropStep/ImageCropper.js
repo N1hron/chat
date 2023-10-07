@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Cropper from 'react-easy-crop'
 
-import { selectImageSrc, setCroppedAreaPixels } from '../../store/slices/avatarEditorSlice'
+import { selectImageSrc, setCroppedAreaPixels } from '../../../store/slices/avatarEditorSlice'
 
 
 export default function ImageCropper() {

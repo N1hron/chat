@@ -7,7 +7,17 @@ export const Confirm = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
     gap: 20px;
+    height: 100%;
+
+    img {
+        position: static !important;
+        transform: none !important;
+        min-height: auto !important;
+        max-height: 275px !important;
+        flex-grow: 1;
+    }
 `
 
 export const Buttons = styled.div`
@@ -29,39 +39,51 @@ export const GoBackButton = styled(Button.Light)`
 
 export const Wrapper = styled(motion.div)`
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    min-height: 400px;
+    min-height: 500px;
     max-width: 700px;
     width: 100%;
 `
 
-export const Content = styled.div`
+export const Step = styled.div`
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+`
+
+export const View = styled.div`
     padding: 20px;
     position: relative;
     background-color: #FFFFFFB6;
     border-radius: 10px;
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
 
-    img {
-        height: 300px;
-        width: 300px;
+    .reactEasyCrop_Container {
+        border-radius: inherit;
     }
 
     .reactEasyCrop_Container {
-        top: 20px;
-        left: 20px;
-        right: 20px;
-        bottom: 20px;
+        position: relative;
+        height: 100%;
+        flex-grow: 1;
+    }
 
-        img {
-            width: auto;
-            height: auto;
-        }
+    img:not(.reactEasyCrop_Image) {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+        min-height: 300px;
+        max-height: 90%;
+        max-width: 90%;
     }
 `
 
@@ -70,7 +92,6 @@ export const ImageDropArea = styled.div`
         display: none;
     }
 
-    position: absolute;
     width: 100%;
     height: 100%;
     display: flex;

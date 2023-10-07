@@ -1,30 +1,25 @@
-import { useState } from 'react'
 import { createPortal } from 'react-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import * as S from './style'
 import Text from '../styled/Text'
-import { ReactComponent as DefaultAvatar } from '../../assets/icons/profile-picture.svg'
 import AvatarEditor from '../avatarEditor/AvatarEditor'
+import AvatarPicture from './AvatarPicture'
 import { selectUser } from '../../store/slices/userSlice'
+import { selectIsVisible as selectIsAvatarEditorVisible, showAvatarEditor } from '../../store/slices/avatarEditorSlice'
 
 
 export default function UserInfo() {
-    const { photoURL, username, email } = useSelector(selectUser)
-    const [showAvatarEditor, setShowAvatarEditor] = useState(false)
+    const dispatch = useDispatch()
+
+    const { photoURL, username, email } = useSelector(selectUser),
+          isAvatarEditorVisible = useSelector(selectIsAvatarEditorVisible)
 
     return (
         <S.Content>
             <S.Avatar>
-                <S.AvatarContainer>
-                    { 
-                        photoURL ? 
-                        <img src={ photoURL } alt={ username } /> : 
-                        <DefaultAvatar/>
-                    }
-                </S.AvatarContainer>
-
-                <S.ChangeAvatarButton onClick={ () => setShowAvatarEditor(true) }>
+                <AvatarPicture src={ photoURL } alt={ username }/>
+                <S.ChangeAvatarButton onClick={ () => dispatch(showAvatarEditor()) }>
                     Click here to change avatar
                 </S.ChangeAvatarButton>
             </S.Avatar>
@@ -35,9 +30,9 @@ export default function UserInfo() {
             </S.Info>
 
             {
-                showAvatarEditor &&
+                isAvatarEditorVisible &&
                 createPortal(
-                    <AvatarEditor goBack={ () => setShowAvatarEditor(false) }/>, 
+                    <AvatarEditor/>, 
                     document.querySelector('#root')
                 )
             }

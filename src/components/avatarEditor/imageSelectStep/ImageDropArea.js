@@ -1,16 +1,29 @@
 import { useRef, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import * as S from './style'
-import { setImageSrc } from '../../store/slices/avatarEditorSlice'
-import { ReactComponent as UploadIcon } from '../../assets/icons/upload.svg'
+import * as S from '../style'
+import { setImageSrc } from '../../../store/slices/avatarEditorSlice'
+import { ReactComponent as UploadIcon } from '../../../assets/icons/upload.svg'
 
+
+function preventDefaultForDragAndDrop(eventTarget) {
+    [
+        'drag', 
+        'dragend', 
+        'dragenter', 
+        'dragexit', 
+        'dragleave', 
+        'dragover', 
+        'dragstart', 
+        'drop'
+    ].forEach(event => eventTarget.addEventListener(event, e => e.preventDefault()))
+}
 
 export default function ImageDropArea() {
+    const dispatch = useDispatch()
+
     const areaRef = useRef(),
           inputRef = useRef()
-
-    const dispatch = useDispatch()
 
     useEffect(() => preventDefaultForDragAndDrop(areaRef.current), [])
 
@@ -47,17 +60,4 @@ export default function ImageDropArea() {
             </p>
         </S.ImageDropArea>
     )
-}
-
-function preventDefaultForDragAndDrop(eventTarget) {
-    [
-        'drag', 
-        'dragend', 
-        'dragenter', 
-        'dragexit', 
-        'dragleave', 
-        'dragover', 
-        'dragstart', 
-        'drop'
-    ].forEach(event => eventTarget.addEventListener(event, e => e.preventDefault()))
 }

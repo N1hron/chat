@@ -16,6 +16,7 @@ export const StatusMessage = styled(motion.div)`
     font-size: 1.5rem;
     text-align: center;
     font-weight: 500;
+    width: max-content;
 
     svg {
         width: 100px;

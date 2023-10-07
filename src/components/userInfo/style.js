@@ -14,7 +14,7 @@ export const Avatar = styled.div`
     flex-direction: column;
 `
 
-export const AvatarContainer = styled.div`
+export const AvatarPicture = styled.div`
     background-color: var(--primary-color);
     width: 100%;
     aspect-ratio: 1;
