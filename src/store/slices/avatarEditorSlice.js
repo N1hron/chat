@@ -20,19 +20,13 @@ const avatarEditorSlice = createSlice({
     name: 'avatarEditor',
     initialState,
     reducers: {
-        setImageSrc: (state, action) => { state.imageSrc = action.payload },
-        setCroppedImage: (state, action) => { state.croppedImage = action.payload },
-        setCroppedAreaPixels: (state, action) => { state.croppedAreaPixels = action.payload },
-        showAvatarEditor: state => { state.isVisible = true },
-        setStep: (state, action) => { state.step = state = action.payload },
-        hideAvatarEditor: state => { 
+        setImageSrc: (state, action) => { state.imageSrc = action.payload }, // +
+        setCroppedImage: (state, action) => { state.croppedImage = action.payload }, // +
+        setCroppedAreaPixels: (state, action) => { state.croppedAreaPixels = action.payload }, // +
+        setStep: (state, action) => { state.step = state = action.payload }, // +
+        showAvatarEditor: state => { state.isVisible = true }, // +
+        hideAvatarEditor: state => { // +
             state.isVisible = false
-            state.imageSrc = null 
-            state.croppedImage = null
-            state.croppedAreaPixels = null
-            state.step = 1
-        },
-        resetAvatarEditor: state => { 
             state.imageSrc = null 
             state.croppedImage = null
             state.croppedAreaPixels = null
@@ -48,21 +42,20 @@ const avatarEditorSlice = createSlice({
     }
 })
 
-export const selectStep = state => state.avatarEditor.step
-export const selectIsVisible = state => state.avatarEditor.isVisible
 export const selectImageSrc = state => state.avatarEditor.imageSrc
 export const selectCroppedImage = state => state.avatarEditor.croppedImage
 export const selectCroppedAreaPixels = state => state.avatarEditor.croppedAreaPixels
+export const selectStep = state => state.avatarEditor.step
+export const selectIsVisible = state => state.avatarEditor.isVisible
 
 const { actions, reducer } = avatarEditorSlice
 
 export default reducer
 export const { 
-    setImageSrc, 
-    setCroppedImage,
-    setCroppedAreaPixels,
-    resetAvatarEditor,
-    showAvatarEditor,
-    hideAvatarEditor,
-    setStep,
+    setImageSrc, // +
+    setCroppedImage, // +
+    setCroppedAreaPixels, // +
+    showAvatarEditor, // +
+    hideAvatarEditor, // +
+    setStep, // +
 } = actions

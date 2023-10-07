@@ -39,7 +39,8 @@ export const GoBackButton = styled(Button.Light)`
 
 export const Wrapper = styled(motion.div)`
     position: relative;
-    min-height: 500px;
+    min-height: 400px;
+    max-height: 500px;
     max-width: 700px;
     width: 100%;
 `

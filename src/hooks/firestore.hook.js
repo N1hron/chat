@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../store/slices/userSlice'
 import { doc, setDoc } from 'firebase/firestore'
@@ -14,6 +15,13 @@ export default function useFirestore() {
     const user = useSelector(selectUser)
     const dispatch = useDispatch()
     const { id } = user
+
+    useEffect(() => {
+        window.addEventListener('offline', () => {
+            console.log('offline')
+            setError('Looks like you are offline')
+        })
+    }, [])
     
     function addUserToDatabase(uid, name) {
         setDoc(doc(db, 'users', uid), {
@@ -27,26 +35,37 @@ export default function useFirestore() {
         
         const uploadTask = uploadBytesResumable(storageRef, file)
 
+        function onError() {
+            if (status.type !== 'error') {
+                setTimeout(() => {
+                    setIdle()
+                    if (onFinish) onFinish()
+                }, 1250)
+                setError()
+            }
+        }
+
+        window.addEventListener('offline', onError)
+
+        setLoading()
         uploadTask.on('state_changed',
             (snapshot) => {
-                setLoading()
+                if (!navigator.onLine) onError()
                 setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
             },
-            (error) => {
-                setError()
-            }, 
+            () => onError(), 
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     updateProfile(auth.currentUser, { photoURL: downloadURL })
-                    .then(() => dispatch(setUser({ ...user, photoURL: auth.currentUser.photoURL })))
-                    .then(() => {
-                        setSuccess()
-                        
-                        setTimeout(() => {
-                            setIdle()
-                            if (onFinish) onFinish()
-                        }, 1250)
-                    })
+                        .then(() => dispatch(setUser({ ...user, photoURL: auth.currentUser.photoURL })))
+                        .then(() => {
+                            setSuccess()
+                            
+                            setTimeout(() => {
+                                setIdle()
+                                if (onFinish) onFinish()
+                            }, 1250)
+                        })
                 })
             }
         )

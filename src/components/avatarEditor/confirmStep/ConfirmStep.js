@@ -6,7 +6,7 @@ import Confirm from './Confirm'
 import GoBackButton from '../GoBackButton'
 import StatusMessage from '../../statusMessage/StatusMessage'
 import useFirestore from '../../../hooks/firestore.hook'
-import { setStep, selectCroppedImage, resetAvatarEditor, hideAvatarEditor } from '../../../store/slices/avatarEditorSlice'
+import { setStep, selectCroppedImage, hideAvatarEditor } from '../../../store/slices/avatarEditorSlice'
 
 
 export default function ConfirmStep() {
@@ -15,13 +15,10 @@ export default function ConfirmStep() {
     
     const { blob } = useSelector(selectCroppedImage)
 
-    const onAvatarUpdateFinfish = () => {
-        dispatch(hideAvatarEditor())
-        dispatch(resetAvatarEditor())
-    }
+    const onAvatarUpdateFinish = () => dispatch(hideAvatarEditor())
 
     const goBack = () => dispatch(setStep(2))
-    const onConfirm = () => updateAvatar(blob, onAvatarUpdateFinfish)
+    const onConfirm = () => updateAvatar(blob, onAvatarUpdateFinish)
 
     const isIdle = status.type === 'idle'
     return (
