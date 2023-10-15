@@ -1,4 +1,4 @@
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { css } from 'styled-components'
 
@@ -17,7 +17,8 @@ const buttonStyles = css`
     gap: 0.5rem;
 
     svg {
-        height: 100%;
+        display: inline-block;
+        height: 2.1rem;
         fill: #FFF;
         width: auto;
         transition: fill 0.15s;
@@ -53,6 +54,10 @@ const buttonLightStyles = css`
             fill: #FFF;
         }
     }
+
+    &:active {
+        color: #FFF;
+    }
 `
 
 const buttonDarkStyles = css`
@@ -66,10 +71,24 @@ const buttonDarkStyles = css`
             fill: #FFF;
         }
     }
+
+    &:active {
+        color: #FFF;
+    }
 `
 
 export const Button = styled.button`
     ${ buttonStyles }
+`
+
+export const ButtonLink = styled(Link)`
+    ${ buttonStyles }
+    text-decoration: none;
+`
+
+export const ButtonNavLink = styled(NavLink)`
+    ${ buttonStyles }
+    text-decoration: none;
 `
 
 Button.Light = styled(Button)`
@@ -78,11 +97,6 @@ Button.Light = styled(Button)`
 
 Button.Dark = styled(Button)`
     ${ buttonDarkStyles }
-`
-
-export const ButtonLink = styled(ReactRouterLink)`
-    ${ buttonStyles }
-    text-decoration: none;
 `
 
 ButtonLink.Primary = styled(ButtonLink)`

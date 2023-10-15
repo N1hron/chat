@@ -6,7 +6,7 @@ import { ReactComponent as LogOutIcon } from '../../assets/icons/logout.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/icons/profile.svg'
 import { ReactComponent as ChatIcon } from '../../assets/icons/chat.svg'
 import Logo from '../logo/Logo'
-import { Button } from '../styled/Button'
+import { Button, ButtonNavLink } from '../styled/Button'
 
 
 export default function Sidebar() {
@@ -21,16 +21,16 @@ export default function Sidebar() {
             <S.Navigation>
                 <ul>
                     <li>
-                        <S.NavigationLink to='/profile'>
+                        <ButtonNavLink to='/profile'>
                             <ProfileIcon/>
                             Profile
-                        </S.NavigationLink>
+                        </ButtonNavLink>
                     </li>
                     <li>
-                        <S.NavigationLink to='/messages'>
+                        <ButtonNavLink to='/messages'>
                             <ChatIcon/>
                             Messages
-                        </S.NavigationLink>
+                        </ButtonNavLink>
                     </li>
                 </ul>
             </S.Navigation>
