@@ -26,8 +26,10 @@ const GlobalStyle = createGlobalStyle`
 
     :root {
         --primary-color: ${({ theme }) => theme.colors['primary']};
+        --primary-color-dark: ${({ theme }) => theme.colors['primary-dark']};
         --primary-color-darker: ${({ theme }) => theme.colors['primary-darker']};
         --accent-color-1: ${({ theme }) => theme.colors['accent-1']};
+        --accent-color-1-dark: ${({ theme }) => theme.colors['accent-1-dark']};
         --accent-color-1-darker: ${({ theme }) => theme.colors['accent-1-darker']};
         --accent-color-2: ${({ theme }) => theme.colors['accent-2']};
         --secondary-color-1: ${({ theme }) => theme.colors['secondary-1']};

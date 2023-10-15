@@ -35,10 +35,10 @@ const buttonStyles = css`
     }
 
     &:active {
-        color: var(--accent-color-1-darker);
+        color: var(--accent-color-1-dark);
 
         svg {
-            fill: var(--accent-color-1-darker);
+            fill: var(--accent-color-1-dark);
         }
     }
 `
@@ -48,7 +48,7 @@ const buttonLightStyles = css`
 
     &:hover {
         color: #FFF;
-        background-color: var(--accent-color-1-darker);
+        background-color: var(--accent-color-1-dark);
 
         svg {
             fill: #FFF;
@@ -57,6 +57,11 @@ const buttonLightStyles = css`
 
     &:active {
         color: #FFF;
+        background-color: var(--accent-color-1-darker);
+
+        svg {
+            fill: #FFF;
+        }
     }
 `
 
@@ -65,7 +70,7 @@ const buttonDarkStyles = css`
 
     &:hover {
         color: #FFF;
-        background-color: var(--primary-color-darker);
+        background-color: var(--primary-color-dark);
 
         svg {
             fill: #FFF;
@@ -74,6 +79,11 @@ const buttonDarkStyles = css`
 
     &:active {
         color: #FFF;
+        background-color: var(--primary-color-darker);
+
+        svg {
+            fill: #FFF;
+        }
     }
 `
 
@@ -89,6 +99,14 @@ export const ButtonLink = styled(Link)`
 export const ButtonNavLink = styled(NavLink)`
     ${ buttonStyles }
     text-decoration: none;
+
+    &.active {
+        color: var(--accent-color-1);
+
+        svg {
+            fill: var(--accent-color-1);
+        }
+    }
 `
 
 Button.Light = styled(Button)`
