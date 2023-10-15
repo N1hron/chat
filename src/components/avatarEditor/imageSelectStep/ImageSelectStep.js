@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 
 import * as S from '../style'
-import * as Button from '../../styled/Button'
+import { Button } from '../../styled/Button'
 import ImageDropArea from './ImageDropArea'
 import GoBackButton from '../GoBackButton'
 import { hideAvatarEditor, selectImageSrc, setImageSrc, setStep } from '../../../store/slices/avatarEditorSlice'

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 
 import * as S from '../style'
-import * as Button from '../../styled/Button'
+import { Button } from '../../styled/Button'
 import ImageCropper from './ImageCropper'
 import GoBackButton from '../GoBackButton'
 import { selectImageSrc, setStep, selectCroppedAreaPixels, getCroppedImage } from '../../../store/slices/avatarEditorSlice'

@@ -7,6 +7,7 @@ import * as S from './style'
 import StatusMessage from '../statusMessage/StatusMessage'
 import { setUser } from '../../store/slices/userSlice'
 
+
 export default function CheckUser({ children }) {
     const [userChecked, setUserChecked] = useState(false)
     const [showContent, setShowContent] = useState(false)

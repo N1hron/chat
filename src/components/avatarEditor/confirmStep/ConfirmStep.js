@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 
 import * as S from '../style'
-import * as Button from '../../styled/Button'
+import { Button } from '../../styled/Button'
 import Confirm from './Confirm'
 import GoBackButton from '../GoBackButton'
 import StatusMessage from '../../statusMessage/StatusMessage'

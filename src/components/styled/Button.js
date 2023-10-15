@@ -68,24 +68,24 @@ const buttonDarkStyles = css`
     }
 `
 
-export const Transparent = styled.button`
+export const Button = styled.button`
     ${ buttonStyles }
 `
 
-export const Light = styled(Transparent)`
+Button.Light = styled(Button)`
     ${ buttonLightStyles }
 `
 
-export const Dark = styled(Transparent)`
+Button.Dark = styled(Button)`
     ${ buttonDarkStyles }
 `
 
-export const Link = styled(ReactRouterLink)`
+export const ButtonLink = styled(ReactRouterLink)`
     ${ buttonStyles }
     text-decoration: none;
 `
 
-export const LinkPrimary = styled(Link)`
+ButtonLink.Primary = styled(ButtonLink)`
     ${ buttonLightStyles }
 `
 

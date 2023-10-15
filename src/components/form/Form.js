@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import Modal from '../modal/Modal'
 import Field from './Field'
 import * as S from './style'
-import * as Button from '../styled/Button'
+import { Button } from '../styled/Button'
 import { ReactComponent as SpinnerIcon } from '../../assets/icons/spinner.svg'
 
 
