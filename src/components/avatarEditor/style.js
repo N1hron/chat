@@ -82,9 +82,13 @@ export const View = styled.div`
         top: 50%;
         transform: translate(-50%, -50%);
         object-fit: contain;
-        min-height: 300px;
+        min-height: calc(100% - 40px);
         max-height: 90%;
         max-width: 90%;
+    }
+
+    .reactEasyCrop_Image {
+        min-height: 100%;
     }
 `
 

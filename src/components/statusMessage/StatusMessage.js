@@ -26,7 +26,6 @@ export default function StatusMessage({ children, type }) {
             variants={ variants } 
             initial='hidden'
             animate='visible'
-            exit='hidden'
             transition={{ delay: 0.1, duration: 0.1 }}
             ref={ messageRef }
         >
