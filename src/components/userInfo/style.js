@@ -21,6 +21,9 @@ export const AvatarPicture = styled.div`
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
         width: 100%;
