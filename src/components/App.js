@@ -7,9 +7,11 @@ import MessagesPage from '../pages/messagesPage/MessagesPage'
 import LogInPage from '../pages/LogInPage'
 import SignUpPage from '../pages/SignUpPage'
 import AccessPage from '../pages/accessPage/AccessPage'
+import PeoplePage from '../pages/peoplePage/PeoplePage'
 import RequireAuth from './RequireAuth'
 import RequireUnauthorized from './RequireUnauthorized'
 import CheckUser from './checkUser/CheckUser'
+import NotFound from '../pages/notFound/NotFound'
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -21,6 +23,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         }>
             <Route path='profile' element={ <ProfilePage/> }/>
             <Route path='messages' element={ <MessagesPage/> }/>
+            <Route path='people' element={ <PeoplePage/> }/>
         </Route>
 
         <Route path='/unauthorized/' element={ 
@@ -32,6 +35,8 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path='login' element={ <LogInPage/> }/>
             <Route path='signup' element={ <SignUpPage/> }/>
         </Route>
+
+        <Route path='*' element={ <NotFound/> }/>
     </>
 ))
 

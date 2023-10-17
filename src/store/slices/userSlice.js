@@ -24,7 +24,8 @@ const userSlice = createSlice({
             state.id = null
             state.username = null
             state.photoURL = null
-        }
+        },
+        setPhotoURL: (state, action) => { state.photoURL = action.payload }
     }
 })
 
@@ -34,4 +35,4 @@ export const selectUsername = state => state.user.username
 const { actions, reducer } = userSlice
 
 export default reducer
-export const { setUser, removeUser } = actions
+export const { setUser, removeUser, setPhotoURL } = actions

@@ -1,21 +1,14 @@
 import { useRef, useEffect } from 'react'
 
 import * as S from './style'
-import { ReactComponent as SpinnerIcon } from '../../assets/icons/spinner.svg'
-import { ReactComponent as SuccessIcon } from '../../assets/icons/done.svg'
-import { ReactComponent as ErrorIcon } from '../../assets/icons/error.svg'
 import { appearVariants as variants } from '../../animations/variants'
+import statusIcons from './statusIcons'
 
-
-const icons = {
-    'loading': <SpinnerIcon/>,
-    'success': <SuccessIcon/>,
-    'error': <ErrorIcon/>
-}
 
 export default function StatusMessage({ children, type }) {
     const messageRef = useRef()
 
+    // Making message width at least equal to its height
     useEffect(() => {
         const height = getComputedStyle(messageRef.current).height
         messageRef.current.style.minWidth = height
@@ -29,7 +22,7 @@ export default function StatusMessage({ children, type }) {
             transition={{ delay: 0.1, duration: 0.1 }}
             ref={ messageRef }
         >
-            { type && icons[type] }
+            { type && statusIcons[type] }
             { children }
         </S.StatusMessage>
     )

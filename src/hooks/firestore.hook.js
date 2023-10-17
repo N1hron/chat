@@ -8,17 +8,17 @@ import { updateProfile } from 'firebase/auth'
 
 import useStatus from './status.hook'
 import { db, storage } from '../firebase'
-import { selectUser } from '../store/slices/userSlice'
+import { selectUser, setPhotoURL } from '../store/slices/userSlice'
 
 export default function useFirestore() {
     const { status, setLoading, setSuccess, setError, setProgress, setIdle } = useStatus() 
     const user = useSelector(selectUser)
     const dispatch = useDispatch()
-    const { id } = user
+    const { id: userId } = user
 
     useEffect(() => {
         window.addEventListener('offline', () => {
-            console.log('offline')
+            // console.log('offline')
             setError('Looks like you are offline')
         })
     }, [])
@@ -29,23 +29,27 @@ export default function useFirestore() {
         })
     }
 
-    function updateAvatar(file, onFinish) {
-        const extension = file.type.split('/')[1]
-        const storageRef = ref(storage, `avatars/${id}.${extension}`);
-        
+    function updateAvatar(file, callback) {
+        const ext = file.type.split('/')[1]
+        const storageRef = ref(storage, `avatars/${userId}.${ext}`);
         const uploadTask = uploadBytesResumable(storageRef, file)
+
+        window.addEventListener('offline', onError)
 
         function onError() {
             if (status.type !== 'error') {
-                setTimeout(() => {
-                    setIdle()
-                    if (onFinish) onFinish()
-                }, 1250)
                 setError()
+                onFinish()
             }
         }
 
-        window.addEventListener('offline', onError)
+        function onFinish() {
+            setTimeout(() => {
+                setIdle()
+                if (callback) callback()
+                window.removeEventListener('offline', onError)
+            }, 1250)
+        }
 
         setLoading()
         uploadTask.on('state_changed',
@@ -57,14 +61,10 @@ export default function useFirestore() {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     updateProfile(auth.currentUser, { photoURL: downloadURL })
-                        .then(() => dispatch(setUser({ ...user, photoURL: auth.currentUser.photoURL })))
+                        .then(() => dispatch(setPhotoURL(auth.currentUser.photoURL)))
                         .then(() => {
                             setSuccess()
-                            
-                            setTimeout(() => {
-                                setIdle()
-                                if (onFinish) onFinish()
-                            }, 1250)
+                            onFinish()
                         })
                 })
             }
