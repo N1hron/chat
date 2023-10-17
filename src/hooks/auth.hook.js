@@ -19,7 +19,7 @@ export default function useAuth() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    function onSuccess(user) {
+    function onUserSet(user) {
         dispatch(setUser({ 
             email: user.email, 
             username: user.displayName,
@@ -30,11 +30,7 @@ export default function useAuth() {
         navigate('/')
     }
 
-    function handleLogOut() {
-        signOut(auth)
-            .then(() => dispatch(removeUser()))
-            .catch(console.error)
-    }
+    const handleLogOut = () => signOut(auth).then(() => dispatch(removeUser()))
 
     function handleSignUp({ email, password, username }) {
         setLoading()
@@ -43,10 +39,10 @@ export default function useAuth() {
             .then(({ user }) => {
                 updateProfile(user, { displayName: username })
                     .then(() => addUserToDatabase(user.uid, user.displayName))
-                    .then(() => onSuccess(user))
+                    .then(() => onUserSet(user))
             })
             .catch(({ message, code }) => {
-                console.error(`${ message }: ${ code }`)
+                // console.error(`${ message }: ${ code }`)
                 setError(code === 'auth/email-already-in-use' ? 'This email is already in use' : 'Something went wrong...')
             })
     }
@@ -55,9 +51,9 @@ export default function useAuth() {
         setLoading()
 
         signInWithEmailAndPassword(auth, email, password)
-            .then(({ user }) => onSuccess(user))
+            .then(({ user }) => onUserSet(user))
             .catch(({ message, code }) => {
-                console.error(`${ message }: ${ code }`)
+                // console.error(`${ message }: ${ code }`)
                 setError(code === 'auth/invalid-login-credentials' ? 'Wrong email or password' : 'Something went wrong...')
             });
     }
