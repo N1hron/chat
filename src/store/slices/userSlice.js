@@ -28,13 +28,8 @@ const userSlice = createSlice({
     }
 })
 
-export const selectUser = createSelector(
-    state => state.user.email,
-    state => state.user.id,
-    state => state.user.username,
-    state => state.user.photoURL,
-    (email, id, username, photoURL) => ({ email, id, username, photoURL })
-)
+export const selectUser = state => state.user
+export const selectUsername = state => state.user.username
 
 const { actions, reducer } = userSlice
 
