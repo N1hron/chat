@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { createSelector } from '@reduxjs/toolkit'
 
 
 const initialState = {
@@ -35,6 +34,7 @@ const usersSlice = createSlice({
 
 export const selectUser = state => state.users.currentUser
 export const selectUsername = state => state.users.currentUser.username
+export const selectUserId = state => state.users.currentUser.id
 export const selectUsers = state => state.users.users
 
 const { actions, reducer } = usersSlice

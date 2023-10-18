@@ -8,6 +8,7 @@ import User from './User'
 import { Button } from '../styled/Button'
 import { ReactComponent as BackIcon } from '../../assets/icons/navigate_before.svg'
 import { ReactComponent as NextIcon } from '../../assets/icons/navigate_next.svg'
+import { selectUserId } from '../../store/slices/usersSlice'
 
 
 export default function UsersList() {
@@ -15,15 +16,16 @@ export default function UsersList() {
     const dispatch = useDispatch()
 
     const users = useSelector(selectUsers),
+          currentUserId = useSelector(selectUserId),
           [offset, setOffset] = useState(1),
-          usersPerPage = 5
+          usersPerPage = 6
 
     useEffect(() => {
         getUsers().then(users => dispatch(setUsers(users)))
     }, [])
 
     function renderUsers() {
-        return users.map(user => (
+        return users.filter(user => user.id !== currentUserId).map(user => (
             <User 
                 key={ user.id } 
                 name={ user.name } 
@@ -33,7 +35,7 @@ export default function UsersList() {
     }
 
     const renderedUsers = renderUsers().slice(usersPerPage * offset - usersPerPage, usersPerPage * offset)
-    console.log(renderedUsers)
+    
     return (
         <S.UsersList>
             <ul>
@@ -49,7 +51,7 @@ export default function UsersList() {
                 <p>{ offset }</p>
                 <Button.Light 
                     onClick={ () => setOffset(prev => prev += 1) }
-                    disabled={ offset >= users.length / usersPerPage }
+                    disabled={ offset >= (users.length - 1) / usersPerPage }
                 >
                     <NextIcon/>
                 </Button.Light>
