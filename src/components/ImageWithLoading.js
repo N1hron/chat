@@ -25,5 +25,5 @@ export default function ImageWithLoading({ src, alt }) {
 }
 
 const StyledSpinner = styled(Spinner)`
-    max-width: 150px;
+    max-width: min(150px, 70%);
 `

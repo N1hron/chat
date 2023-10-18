@@ -24,6 +24,7 @@ export default function useFirestore() {
     
     function addUserToDatabase(uid, name) {
         setDoc(doc(db, 'users', uid), {
+            id: uid,
             name: name
         })
     }
@@ -31,9 +32,10 @@ export default function useFirestore() {
     function getUsers() {
         const q = query(collection(db, 'users'))
         
-        getDocs(q)
+        return getDocs(q)
             .then(querySnapshot => {
-                querySnapshot.forEach(doc => console.log(doc.data()))
+                console.log(querySnapshot.docs)
+                return querySnapshot.docs.map(doc => doc.data())
             })
     }
 
