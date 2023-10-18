@@ -9,7 +9,8 @@ export const Feature = styled.section`
 `
 
 export const Content = styled.div`
-    /* box-shadow: inset 0px 0px 50px 0px rgba(0, 0, 0, 0.3); */
     flex-grow: 1;
     padding: 15px;
+    display: flex;
+    flex-direction: column;
 `

@@ -47,6 +47,27 @@ const GlobalStyle = createGlobalStyle`
         &::after {
             box-sizing: border-box;
         }
+
+        /* ===== Scrollbar CSS ===== */
+        /* Firefox */
+        
+        scrollbar-width: auto;
+        scrollbar-color: var(--accent-color-1) transparent;
+
+        /* Chrome, Edge, and Safari */
+        &::-webkit-scrollbar {
+            width: 13px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color-1);
+            border-radius: 10px;
+            border: 4px solid var(--primary-color);
+        }
     }
 
     body {

@@ -46,10 +46,8 @@ export const NavigationLink = styled(NavLink)`
 `
 
 export const Sidebar = styled.aside`
-    min-height: 100%;
     background-color: ${({ theme }) => theme.colors['primary']};
     width: 300px;
-    flex-shrink: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -58,6 +56,11 @@ export const Sidebar = styled.aside`
     color: white;
     position: relative;
     z-index: 2;
+    position: fixed;
+    overflow-y: scroll;
+    height: 100vh;
+    left: 0;
+    top: 0;
 
     a {
         text-decoration: none;

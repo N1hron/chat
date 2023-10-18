@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc, getDocs, query, collection } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { auth } from '../firebase'
 import { updateProfile } from 'firebase/auth'
@@ -26,6 +26,15 @@ export default function useFirestore() {
         setDoc(doc(db, 'users', uid), {
             name: name
         })
+    }
+
+    function getUsers() {
+        const q = query(collection(db, 'users'))
+        
+        getDocs(q)
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => console.log(doc.data()))
+            })
     }
 
     function updateAvatar(file, callback) {
@@ -71,5 +80,5 @@ export default function useFirestore() {
         )
     }
 
-    return { addUserToDatabase, updateAvatar, status }
+    return { addUserToDatabase, updateAvatar, getUsers, status }
 }
