@@ -7,7 +7,7 @@ import MessagesPage from '../pages/messagesPage/MessagesPage'
 import LogInPage from '../pages/LogInPage'
 import SignUpPage from '../pages/SignUpPage'
 import AccessPage from '../pages/accessPage/AccessPage'
-import PeoplePage from '../pages/peoplePage/PeoplePage'
+import UsersPage from '../pages/usersPage/UsersPage'
 import RequireAuth from './RequireAuth'
 import RequireUnauthorized from './RequireUnauthorized'
 import CheckUser from './checkUser/CheckUser'
@@ -23,7 +23,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         }>
             <Route path='profile' element={ <ProfilePage/> }/>
             <Route path='messages' element={ <MessagesPage/> }/>
-            <Route path='people' element={ <PeoplePage/> }/>
+            <Route path='users' element={ <UsersPage/> }/>
         </Route>
 
         <Route path='/unauthorized/' element={ 

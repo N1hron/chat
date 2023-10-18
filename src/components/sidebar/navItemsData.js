@@ -18,8 +18,8 @@ const navItemsData = [
     },
     {
         id: 2,
-        label: 'People',
-        to: '/people',
+        label: 'Users',
+        to: '/users',
         icon: <PeopleIcon/>
     }
 ]

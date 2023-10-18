@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setUser } from '../store/slices/userSlice'
 import { doc, setDoc } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { auth } from '../firebase'
@@ -60,6 +59,7 @@ export default function useFirestore() {
             () => onError(), 
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setDoc(doc(db, 'users', userId), { photoURL: downloadURL }, { merge: true })
                     updateProfile(auth.currentUser, { photoURL: downloadURL })
                         .then(() => dispatch(setPhotoURL(auth.currentUser.photoURL)))
                         .then(() => {
