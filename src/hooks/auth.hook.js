@@ -10,7 +10,7 @@ import {
 import { auth } from '../firebase'
 import useStatus from './status.hook'
 import useFirestore from './firestore.hook'
-import { setUser, removeUser } from '../store/slices/userSlice'
+import { setUser, removeUser } from '../store/slices/usersSlice'
 
 
 export default function useAuth() {

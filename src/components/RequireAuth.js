@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { selectUser } from '../store/slices/userSlice'
+import { selectUser } from '../store/slices/usersSlice'
 
 
 export default function RequireAuth({ children }) {

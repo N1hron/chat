@@ -5,7 +5,7 @@ import * as S from './style'
 import Text from '../styled/Text'
 import AvatarEditor from '../avatarEditor/AvatarEditor'
 import AvatarPicture from './AvatarPicture'
-import { selectUser } from '../../store/slices/userSlice'
+import { selectUser } from '../../store/slices/usersSlice'
 import { selectIsVisible as selectIsAvatarEditorVisible, showAvatarEditor } from '../../store/slices/avatarEditorSlice'
 
 

@@ -7,7 +7,7 @@ import { updateProfile } from 'firebase/auth'
 
 import useStatus from './status.hook'
 import { db, storage } from '../firebase'
-import { selectUser, setPhotoURL } from '../store/slices/userSlice'
+import { selectUser, setPhotoURL } from '../store/slices/usersSlice'
 
 export default function useFirestore() {
     const { status, setLoading, setSuccess, setError, setProgress, setIdle } = useStatus() 

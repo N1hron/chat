@@ -4,12 +4,11 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import * as S from './style'
 import StatusMessage from '../statusMessage/StatusMessage'
-import { setUser } from '../../store/slices/userSlice'
+import { setUser } from '../../store/slices/usersSlice'
 
 
 export default function CheckUser({ children }) {
     const [userChecked, setUserChecked] = useState(false)
-    const [showContent, setShowContent] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(onInitialLoading, [])
@@ -25,10 +24,7 @@ export default function CheckUser({ children }) {
                 }))
             }
             
-            setTimeout(() => {
-                setUserChecked(true)
-                setTimeout(() => setShowContent(true), 200)
-            }, 1000)
+            setTimeout(() => setUserChecked(true), 1000)
         })
     }
 
@@ -42,16 +38,4 @@ export default function CheckUser({ children }) {
             }
         </>
     )
-
-    // return (
-    //     <>
-    //         { 
-    //             !userChecked && 
-    //             <S.StatusMessageContainer>
-    //                 <StatusMessage type='loading'>Loading</StatusMessage>
-    //             </S.StatusMessageContainer> 
-    //         }
-    //         { showContent && children }
-    //     </>
-    // )
 }
