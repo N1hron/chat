@@ -23,15 +23,17 @@ export default function UsersList() {
     useEffect(() => {
         getUsers().then(users => dispatch(setUsers(users)))
     }, [])
-
+    console.log(currentUserId)
     function renderUsers() {
-        return users.filter(user => user.id !== currentUserId).map(user => (
-            <User 
-                key={ user.id } 
-                name={ user.name } 
-                photoURL={ user.photoURL }
-            />
-        ))
+        return users.filter(user => user.id.trim() !== currentUserId).map(user => {
+            return (
+                <User 
+                    key={ user.id } 
+                    name={ user.name } 
+                    photoURL={ user.photoURL }
+                />
+            )
+        })
     }
 
     const renderedUsers = renderUsers().slice(usersPerPage * offset - usersPerPage, usersPerPage * offset)

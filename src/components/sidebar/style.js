@@ -41,25 +41,6 @@ export const NavigationLink = styled(NavLink)`
             scale: initial;
         }
     }
-
-    svg {
-        fill: #FFF;
-        height: 100%;
-        transition: fill 0.15s;
-        width: 2.25rem;
-    }
-
-    transition: all 0.15s;
-
-    &:hover {
-        scale: 1.05;
-
-        color: var(--accent-color-1);
-
-        svg {
-            fill: var(--accent-color-1);
-        }
-    }
 `
 
 export const Sidebar = styled.aside`

@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom'
 import { useState } from 'react'
 
-import Sidebar from '../../components/sidebar/Sidebar'
 import * as S from './style'
 import { appearVariants as variants } from '../../animations/variants'
+import Sidebar from '../../components/sidebar/Sidebar'
 
 
 export default function MainLayout() {
@@ -14,7 +14,6 @@ export default function MainLayout() {
             variants={ variants }
             initial='hidden'
             animate='visible'
-            exit='hidden'
             transition={{ duration: 0.25 }}
             $isSidebarExpanded={ isSidebarExpanded }
         >
