@@ -10,6 +10,7 @@ export default function UsersPage() {
         <Feature title='Users'>
             <S.Content>
                 <UsersList/> 
+                <Block/>
             </S.Content>
         </Feature>
     )

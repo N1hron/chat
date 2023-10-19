@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 import * as S from './style'
 import useAuth from '../../hooks/auth.hook'
@@ -11,8 +10,9 @@ import navItemsData from './navItemsData'
 
 
 export default function Sidebar({ isExpanded, setIsExpanded }) {
-    const [navItems, setNavItems] = useState([])
     const { handleLogOut } = useAuth()
+
+    const [navItems, setNavItems] = useState([])
 
     useEffect(() => setNavItems(createNavItems()), [isExpanded])
 

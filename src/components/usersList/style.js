@@ -15,6 +15,7 @@ export const UsersList = styled(Block)`
     flex-direction: column;
     gap: 20px;
     justify-content: space-between;
+    overflow-x: scroll;
 `
 
 export const User = styled.li`
@@ -30,17 +31,17 @@ export const Avatar = styled.div`
     overflow: hidden;
 `
 
-export const UsersOffset = styled.div`
+export const UsersListPageSelect = styled.div`
     display: flex;
     gap: 10px;
     justify-content: space-between;
     align-items: center;
-    
-    p {
-        font-size: 1.75rem;
-        background-color: var(--accent-color-1);
-        color: #FFF;
-        padding: 0.5rem 0.75rem;
-        border-radius: 0.75rem;
-    }
+`
+
+export const Page = styled.p`
+    font-size: 1.75rem;
+    background-color: var(--accent-color-1);
+    color: #FFF;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
 `
