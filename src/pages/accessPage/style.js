@@ -16,5 +16,4 @@ export const AccessPage = styled(motion.div)`
 
 export const LogoContainer = styled.div`
     grid-column: 1/3;
-    justify-self: center;
 `

@@ -52,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
         /* Firefox */
         
         scrollbar-width: auto;
-        scrollbar-color: var(--accent-color-1) transparent;
+        scrollbar-color: var(--accent-color-1) rgba(0,0,0,0);
 
         /* Chrome, Edge, and Safari */
         &::-webkit-scrollbar {
@@ -60,13 +60,13 @@ const GlobalStyle = createGlobalStyle`
         }
 
         &::-webkit-scrollbar-track {
-            background: transparent;
+            background: #FFF;
         }
 
         &::-webkit-scrollbar-thumb {
             background-color: var(--accent-color-1);
             border-radius: 10px;
-            border: 4px solid var(--primary-color);
+            border: 4px solid #FFF;
         }
     }
 

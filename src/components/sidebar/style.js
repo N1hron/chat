@@ -1,6 +1,23 @@
 import { styled } from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
+import { Button } from '../styled/Button'
+
+
+export const LogoLink = styled(Link)`
+    width: 100%;
+    min-height: 80px;
+
+    &>div {
+        display: flex;
+        justify-content: center;
+
+        svg {
+            flex-shrink: 0;
+        }
+    }
+`
 
 export const NavigationLink = styled(NavLink)`
     font-size: 1.75rem;
@@ -47,20 +64,29 @@ export const NavigationLink = styled(NavLink)`
 
 export const Sidebar = styled.aside`
     background-color: ${({ theme }) => theme.colors['primary']};
-    width: 300px;
+    width: ${ props => props.$isExpanded ? '300px' : '80px'};
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 1rem;
     color: white;
-    position: relative;
     z-index: 2;
     position: fixed;
     overflow-y: scroll;
+    overflow-x: hidden;
     height: 100vh;
     left: 0;
     top: 0;
+    direction: rtl;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    * {
+        direction: ltr;
+    }
 
     a {
         text-decoration: none;
@@ -70,8 +96,10 @@ export const Sidebar = styled.aside`
         flex-grow: 1;
     }
 
-    button {
-        align-self: stretch;
+    button, a {
+        span {
+            flex-shrink: 0;
+        }
     }
 `
 
@@ -83,5 +111,18 @@ export const Navigation = styled.nav`
         flex-direction: column;
         gap: 1.5rem;
         width: 100%;
+    }
+`
+
+export const ExpandButton = styled(Button.Light) `
+    position: relative;
+    align-self: flex-start;
+    right: -20px;
+    padding: 0.25rem 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    
+    svg {
+        transform: rotateY(${ props => props.$isExpanded ?  '180deg' : 0});
     }
 `

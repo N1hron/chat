@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 export const Logo = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     user-select: none;
     color: #FFF;
@@ -19,7 +20,10 @@ export const Logo = styled.div`
     }
 
     svg {
-        width: 5rem;
+        display: block;
+        max-width: 5rem;
+        flex-shrink: 0;
+        width: 100%;
         fill: #FFF;
         height: auto;
     }

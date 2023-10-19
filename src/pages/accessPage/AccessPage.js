@@ -1,4 +1,4 @@
-import { Button, ButtonLink } from '../../components/styled/Button'
+import { ButtonLink } from '../../components/styled/Button'
 import * as S from './style'
 import Logo from '../../components/logo/Logo'
 import { modalAppearVariants as variants } from '../../animations/variants'
