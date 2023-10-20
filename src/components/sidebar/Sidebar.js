@@ -39,12 +39,11 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
                 </ul>
             </S.Navigation>
 
-            <S.ExpandButton 
-                $isExpanded={ isExpanded }
-                onClick={ () => setIsExpanded(prev => !prev) }
-            >
-                <ExpandIcon/>
-            </S.ExpandButton>
+            <S.ExpandButtonContainer $isExpanded={ isExpanded }>
+                <Button.Light onClick={ () => setIsExpanded(prev => !prev) }>
+                    <ExpandIcon/>
+                </Button.Light>
+            </S.ExpandButtonContainer>
             
             <Button onClick={ handleLogOut }>
                 <LogOutIcon/>

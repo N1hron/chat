@@ -15,7 +15,6 @@ export const UsersList = styled(Block)`
     flex-direction: column;
     gap: 20px;
     justify-content: space-between;
-    overflow-x: scroll;
 `
 
 export const User = styled.li`

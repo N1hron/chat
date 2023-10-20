@@ -43,6 +43,7 @@ export const Wrapper = styled(motion.div)`
     max-height: 500px;
     max-width: 700px;
     width: 100%;
+    margin: 0 80px;
 `
 
 export const Step = styled.div`

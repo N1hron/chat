@@ -15,8 +15,8 @@ export const Content = styled(Block)`
 
 export const Header = styled.header`
     padding: 0px 15px 0;
+    width: 100%;
     
-
     h2 {
         background-color: var(--primary-color);
         padding: 1rem 2rem;
