@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react'
 
 import * as S from './style'
-import { appearVariants as variants } from '../../animations/variants'
 import statusIcons from './statusIcons'
 
 
@@ -15,13 +14,7 @@ export default function StatusMessage({ children, type }) {
     }, [])
 
     return (
-        <S.StatusMessage
-            variants={ variants } 
-            initial='hidden'
-            animate='visible'
-            transition={{ delay: 0.1, duration: 0.1 }}
-            ref={ messageRef }
-        >
+        <S.StatusMessage ref={ messageRef }>
             { type && statusIcons[type] }
             { children }
         </S.StatusMessage>

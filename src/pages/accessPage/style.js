@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 import { motion } from 'framer-motion'
 
 
-export const AccessPage = styled(motion.div)`
+export const AccessModal = styled(motion.div)`
     background-color: var(--primary-color);
     padding: 20px;
     border-radius: 20px;
@@ -12,6 +12,7 @@ export const AccessPage = styled(motion.div)`
     column-gap: 20px;
     row-gap: 30px;
     justify-content: center;
+    margin: auto;
 `
 
 export const LogoContainer = styled.div`

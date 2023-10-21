@@ -6,19 +6,14 @@ import { modalAppearVariants as variants } from '../../animations/variants'
 
 export default function AccessPage() {
     return (
-        <S.AccessPage
-            variants={ variants }
-            initial='hidden'
-            animate='visible'
-            transition={{ delay: 0.1, duration: 0.2 }}
-        >
+        <S.AccessModal>
             <S.LogoContainer>
                 <Logo/>
             </S.LogoContainer>
 
             <ButtonLink to='/unauthorized/login'>Log in</ButtonLink>
             <ButtonLink.Primary to='/unauthorized/signup'>Sign up</ButtonLink.Primary>
-        </S.AccessPage>
+        </S.AccessModal>
     )
 }
 

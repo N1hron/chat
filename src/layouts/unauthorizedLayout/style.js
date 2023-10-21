@@ -1,13 +1,13 @@
 import { styled } from 'styled-components'
 
 
-export const UnauthorizedLayout = styled.div`
-    position: relative;
-    width: 100%;
+export const UnauthorizedLayout = styled.main`
     min-height: 100dvh;
+    width: 100%;
+    padding: 1.5rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-color-3);
-    padding: 30px 0;
+`
+
+export const Container = styled.div`
+    margin: auto;
 `

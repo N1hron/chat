@@ -1,24 +1,6 @@
 import { styled } from 'styled-components'
-import { motion } from 'framer-motion'
 import { Button } from '../styled/Button'
 
-
-export const Confirm = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 20px;
-    height: 100%;
-
-    img {
-        position: static !important;
-        transform: none !important;
-        min-height: auto !important;
-        max-height: 275px !important;
-        flex-grow: 1;
-    }
-`
 
 export const Buttons = styled.div`
     display: flex;
@@ -37,12 +19,10 @@ export const GoBackButton = styled(Button.Light)`
     transform: translateX(-100%);
 `
 
-export const Wrapper = styled(motion.div)`
+export const Container = styled.div`
     position: relative;
     min-height: 400px;
-    max-height: 500px;
-    max-width: 700px;
-    width: 100%;
+    width: 700px;
     margin: 0 80px;
 `
 
@@ -90,6 +70,23 @@ export const View = styled.div`
 
     .reactEasyCrop_Image {
         min-height: 100%;
+    }
+`
+
+export const Confirm = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    height: 100%;
+
+    img {
+        position: static !important;
+        transform: none !important;
+        min-height: auto !important;
+        max-height: 275px !important;
+        flex-grow: 1;
     }
 `
 

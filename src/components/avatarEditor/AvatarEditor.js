@@ -26,16 +26,11 @@ export default function AvatarEditor() {
     
     return (
         <Overlay>
-            <S.Wrapper
-                variants={ variants }
-                initial='hidden'
-                animate='visible'
-                transition={{ duration: 0.2 }}  
-            >
+            <S.Container>
                 <S.Step>
                     { renderStep(step) }
                 </S.Step>
-            </S.Wrapper>
+            </S.Container>
         </Overlay>
     )
 }

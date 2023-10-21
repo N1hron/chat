@@ -1,8 +1,7 @@
 import { styled } from 'styled-components'
-import { motion } from 'framer-motion'
 
 
-export const StatusMessage = styled(motion.div)`
+export const StatusMessage = styled.div`
     background-color: #FFFFFFB6;
     border-radius: 10px;
     padding: 20px;

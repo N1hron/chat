@@ -47,37 +47,11 @@ const GlobalStyle = createGlobalStyle`
         &::after {
             box-sizing: border-box;
         }
-
-        /* ===== Scrollbar CSS ===== */
-        /* Firefox */
-        
-        scrollbar-width: auto;
-        scrollbar-color: var(--accent-color-1) rgba(0,0,0,0);
-
-        /* Chrome, Edge, and Safari */
-        &::-webkit-scrollbar {
-            width: 13px;
-        }
-
-        &::-webkit-scrollbar-track {
-            background: #FFF;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: var(--accent-color-1);
-            border-radius: 10px;
-            border: 4px solid #FFF;
-        }
     }
 
     body {
         min-height: 100vh;
         background-color: var(--secondary-color-3);
-    }
-
-    #root {
-        height: 100dvh;
-        display: flex;
     }
 
     h1, h2, h3, h4, h5, h6 {

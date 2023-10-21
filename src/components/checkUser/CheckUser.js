@@ -8,8 +8,9 @@ import { setUser } from '../../store/slices/usersSlice'
 
 
 export default function CheckUser({ children }) {
-    const [userChecked, setUserChecked] = useState(false)
     const dispatch = useDispatch()
+
+    const [userChecked, setUserChecked] = useState(false)
 
     useEffect(onInitialLoading, [])
 
@@ -24,18 +25,14 @@ export default function CheckUser({ children }) {
                 }))
             }
             
-            setTimeout(() => setUserChecked(true), 1000)
+            setUserChecked(true)
         })
     }
 
     return (
-        <>
-            { 
-                userChecked ? children :
-                <S.StatusMessageContainer>
-                    <StatusMessage type='loading'>Loading</StatusMessage>
-                </S.StatusMessageContainer> 
-            }
-        </>
+        userChecked ? children :
+        <S.Content>
+            <StatusMessage type='loading'>Loading</StatusMessage>
+        </S.Content>
     )
 }

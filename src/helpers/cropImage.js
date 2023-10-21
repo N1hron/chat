@@ -99,6 +99,6 @@ export default async function getCroppedImg(
         blob: file,
         url: URL.createObjectURL(file)
       })
-    }, 'image/jpeg')
+    }, 'image/png')
   })
 }
