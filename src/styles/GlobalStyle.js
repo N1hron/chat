@@ -76,11 +76,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     #root {
-        min-height: 100vh;
-    }
-
-    main {
-        flex-grow: 1;
+        height: 100dvh;
+        display: flex;
     }
 
     h1, h2, h3, h4, h5, h6 {

@@ -4,19 +4,17 @@ import { Link } from 'react-router-dom'
 
 export const Sidebar = styled.aside`
     background-color: ${({ theme }) => theme.colors['primary']};
-    width: ${ props => props.$isExpanded ? '275px' : '80px'};
+    flex-basis: ${ props => props.$isExpanded ? '275px' : '80px'};
+    flex-shrink: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
     z-index: 2;
-    position: fixed;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 100vh;
-    left: 0;
-    top: 0;
+    height: 100%;
     direction: rtl;
 
     &::-webkit-scrollbar {

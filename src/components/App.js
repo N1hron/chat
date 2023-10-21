@@ -11,8 +11,6 @@ import LogInPage from '../pages/LogInPage'
 import SignUpPage from '../pages/SignUpPage'
 import AccessPage from '../pages/accessPage/AccessPage'
 import UsersPage from '../pages/usersPage/UsersPage'
-import RequireAuth from './RequireAuth'
-import RequireUnauthorized from './RequireUnauthorized'
 import CheckUser from './checkUser/CheckUser'
 import NotFound from '../pages/notFound/NotFound'
 
