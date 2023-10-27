@@ -25,11 +25,15 @@ export default function useFirestore() {
     }
 
     function getUsers() {
+        setLoading()
+
         const q = query(collection(db, 'users'))
         
         return getDocs(q).then(querySnapshot => {
+            setSuccess()
+            
             return querySnapshot.docs.map(doc => doc.data())
-        })
+        }).catch(() => setError('Could not retrieve users!'))
     }
 
     async function updateAvatar(img) {

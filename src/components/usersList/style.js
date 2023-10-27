@@ -44,3 +44,7 @@ export const Page = styled.p`
     padding: 0.5rem 0.75rem;
     border-radius: 0.75rem;
 `
+
+export const MessageContainer = styled.div`
+    margin: auto;
+`
