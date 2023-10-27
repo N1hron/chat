@@ -69,7 +69,7 @@ export const View = styled.div`
     }
 
     .reactEasyCrop_Image {
-        min-height: 100%;
+        object-fit: contain;
     }
 `
 
