@@ -10,15 +10,15 @@ import { setStep, selectCroppedImage, hideAvatarEditor } from '../../../store/sl
 
 
 export default function ConfirmStep() {
-    const dispatch = useDispatch()
-    const { updateAvatar, status } = useFirestore()
+    const dispatch = useDispatch(),
+          { updateAvatar, status } = useFirestore()
     
     const { blob } = useSelector(selectCroppedImage)
 
     const onAvatarUpdateFinish = () => dispatch(hideAvatarEditor())
 
     const goBack = () => dispatch(setStep(2))
-    const onConfirm = () => updateAvatar(blob, onAvatarUpdateFinish)
+    const onConfirm = () => updateAvatar(blob).then(onAvatarUpdateFinish)
 
     const isIdle = status.type === 'idle'
     return (
