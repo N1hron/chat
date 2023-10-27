@@ -7,6 +7,7 @@ export default function ImageWithLoading({ src, alt }) {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => { if (!src) setIsLoading(false) }, [])
+    useEffect(() => setIsLoading(true), [src])
 
     const setStyle = () => ({ display: isLoading ? 'none' : 'inline' })
     const onLoad = () => setIsLoading(false)
