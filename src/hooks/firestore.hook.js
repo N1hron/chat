@@ -1,28 +1,23 @@
-import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { doc, setDoc, getDocs, query, collection } from 'firebase/firestore'
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { auth } from '../firebase'
+import { doc, setDoc, getDocs, query, collection } from 'firebase/firestore'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { updateProfile } from 'firebase/auth'
 
 import useStatus from './status.hook'
 import { db, storage } from '../firebase'
 import { selectUser, setPhotoURL } from '../store/slices/usersSlice'
 
-export default function useFirestore() {
-    const { status, setLoading, setSuccess, setError, setProgress, setIdle } = useStatus() 
-    const user = useSelector(selectUser)
-    const dispatch = useDispatch()
-    const { id: userId } = user
 
-    useEffect(() => {
-        window.addEventListener('offline', () => {
-            // console.log('offline')
-            setError('Looks like you are offline')
-        })
-    }, [])
+export default function useFirestore() {
+    const dispatch = useDispatch(),
+          user = useSelector(selectUser),
+          { id: userId } = user,
+          { status, setLoading, setSuccess, setError, setIdle } = useStatus() 
     
-    function addUserToDatabase(uid, name) {
+    function addUserToDatabase(user) {
+        const { uid, name } = user
+
         setDoc(doc(db, 'users', uid), {
             id: uid,
             name: name
@@ -32,55 +27,41 @@ export default function useFirestore() {
     function getUsers() {
         const q = query(collection(db, 'users'))
         
-        return getDocs(q)
-            .then(querySnapshot => {
-                console.log(querySnapshot.docs)
-                return querySnapshot.docs.map(doc => doc.data())
-            })
+        return getDocs(q).then(querySnapshot => {
+            return querySnapshot.docs.map(doc => doc.data())
+        })
     }
 
-    function updateAvatar(file, callback) {
-        const ext = file.type.split('/')[1]
-        const storageRef = ref(storage, `avatars/${userId}.${ext}`);
-        const uploadTask = uploadBytesResumable(storageRef, file)
-
-        window.addEventListener('offline', onError)
-
-        function onError() {
-            if (status.type !== 'error') {
-                setError()
-                onFinish()
-            }
-        }
-
-        function onFinish() {
-            setTimeout(() => {
-                setIdle()
-                if (callback) callback()
-                window.removeEventListener('offline', onError)
-            }, 1250)
-        }
+    async function updateAvatar(img) {
+        const ext = img.type.split('/')[1],
+              storageRef = ref(storage, `avatars/${userId}.${ext}`)
 
         setLoading()
-        uploadTask.on('state_changed',
-            (snapshot) => {
-                if (!navigator.onLine) onError()
-                setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-            },
-            () => onError(), 
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setDoc(doc(db, 'users', userId), { photoURL: downloadURL }, { merge: true })
-                    updateProfile(auth.currentUser, { photoURL: downloadURL })
-                        .then(() => dispatch(setPhotoURL(auth.currentUser.photoURL)))
-                        .then(() => {
-                            setSuccess()
-                            onFinish()
-                        })
-                })
-            }
-        )
+
+        try {
+            const snapshot = await uploadBytes(storageRef, img)
+            const downloadURL = await getDownloadURL(snapshot.ref)
+            
+            await setDoc(
+                doc(db, 'users', userId), 
+                { photoURL: downloadURL }, 
+                { merge: true }
+            ).then(() => updateProfile(auth.currentUser, { photoURL: downloadURL }))
+            
+            dispatch(setPhotoURL(auth.currentUser.photoURL))
+            setSuccess()
+            
+        } catch {
+            setError()
+        }
+
+        setIdle()
     }
 
-    return { addUserToDatabase, updateAvatar, getUsers, status }
+    return { 
+        addUserToDatabase, 
+        updateAvatar, 
+        getUsers, 
+        status 
+    }
 }

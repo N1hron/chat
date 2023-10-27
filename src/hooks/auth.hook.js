@@ -8,17 +8,17 @@ import {
 } from 'firebase/auth'
 
 import { auth } from '../firebase'
-import useStatus from './status.hook'
 import useFirestore from './firestore.hook'
+import useStatus from './status.hook'
 import { setUser, removeUser } from '../store/slices/usersSlice'
 
 
 export default function useAuth() {
-    const { status, setLoading, setSuccess, setError } = useStatus()
-    const { addUserToDatabase } = useFirestore()
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
+    const dispatch = useDispatch(),
+          navigate = useNavigate(),
+          { addUserToDatabase } = useFirestore(),
+          { status, setLoading, setSuccess, setError } = useStatus()
+          
     function onUserSet(user) {
         dispatch(setUser({ 
             email: user.email, 
@@ -30,20 +30,22 @@ export default function useAuth() {
         navigate('/')
     }
 
-    const handleLogOut = () => signOut(auth).then(() => dispatch(removeUser()))
-
     function handleSignUp({ email, password, username }) {
         setLoading()
 
         createUserWithEmailAndPassword(auth, email, password)
-            .then(({ user }) => {
+            .then((userCredential) => {
+                const { user } = userCredential
+
                 updateProfile(user, { displayName: username })
-                    .then(() => addUserToDatabase(user.uid, user.displayName))
+                    .then(() => addUserToDatabase(user))
                     .then(() => onUserSet(user))
             })
-            .catch(({ message, code }) => {
-                // console.error(`${ message }: ${ code }`)
-                setError(code === 'auth/email-already-in-use' ? 'This email is already in use' : 'Something went wrong...')
+            .catch((error) => {
+                setError(
+                    error.code === 'auth/email-already-in-use' ? 
+                    'This email is already in use' : 'Something went wrong...'
+                )
             })
     }
 
@@ -51,12 +53,24 @@ export default function useAuth() {
         setLoading()
 
         signInWithEmailAndPassword(auth, email, password)
-            .then(({ user }) => onUserSet(user))
-            .catch(({ message, code }) => {
-                // console.error(`${ message }: ${ code }`)
-                setError(code === 'auth/invalid-login-credentials' ? 'Wrong email or password' : 'Something went wrong...')
-            });
+            .then((userCredential) => onUserSet(userCredential.user))
+            .catch((error) => {
+                setError(
+                    error.code === 'auth/invalid-login-credentials' ? 
+                    'Wrong email or password' : 'Something went wrong...'
+                )
+            })
     }
 
-    return { status, handleSignUp, handleLogIn, handleLogOut }
+    function handleLogOut() {
+        signOut(auth)
+            .then(() => dispatch(removeUser()))
+    }
+
+    return { 
+        status, 
+        handleSignUp, 
+        handleLogIn, 
+        handleLogOut 
+    }
 }
