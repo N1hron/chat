@@ -4,8 +4,8 @@ import { styled } from 'styled-components'
 export const Content = styled.div`
     display: grid;
     gap: 15px;
-    grid-template-columns: repeat(2, minmax(max-content, 1fr));
-    grid-template-rows: repeat(2, max-content);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, minmax(max-content, 1fr));
     height: 100%;
 
     &>div:nth-child(3) {

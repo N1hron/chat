@@ -16,11 +16,11 @@ export default function useFirestore() {
           { status, setLoading, setSuccess, setError, setIdle } = useStatus() 
     
     function addUserToDatabase(user) {
-        const { uid, name } = user
+        const { uid, displayName } = user
 
         setDoc(doc(db, 'users', uid), {
             id: uid,
-            name: name
+            name: displayName
         })
     }
 

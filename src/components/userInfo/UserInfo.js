@@ -16,7 +16,7 @@ export default function UserInfo() {
           isAvatarEditorVisible = useSelector(selectIsAvatarEditorVisible)
 
     return (
-        <S.Content>
+        <S.UserInfo>
             <S.Avatar>
                 <AvatarPicture src={ photoURL } alt={ username }/>
                 <S.ChangeAvatarButton onClick={ () => dispatch(showAvatarEditor()) }>
@@ -27,6 +27,7 @@ export default function UserInfo() {
             <S.Info>
                 <Text>Username: <span className='highlight'>{ username }</span></Text>
                 <Text>Email: <span className='highlight'>{ email }</span></Text>
+                <Text>About me: <span className='highlight'>...</span></Text>
             </S.Info>
 
             {
@@ -36,6 +37,6 @@ export default function UserInfo() {
                     document.querySelector('#root')
                 )
             }
-        </S.Content>
+        </S.UserInfo>
     )
 }

@@ -18,36 +18,34 @@ export default function UsersList() {
 
     const users = useSelector(selectUsers),
           currentUserId = useSelector(selectUserId),
-          usersPerPage = 6
+          usersPerPage = 12  
           
     useEffect(() => { getUsers().then(users => dispatch(setUsers(users))) }, [])
     
     function renderUsers() {
-        if (status.type === 'success') {
-            const numberOfPages = Math.ceil((users.length - 1) / usersPerPage),
-                  usersSliced = users.slice(usersPerPage * page - usersPerPage, usersPerPage * page)
-            
-            const renderedUsers = usersSliced.filter(user => user.id.trim() !== currentUserId).map(user => (
-                <User 
-                    key={ user.id } 
-                    name={ user.name } 
-                    photoURL={ user.photoURL }
-                />
-            ))
+        const numberOfPages = Math.ceil((users.length - 1) / usersPerPage),
+                usersSliced = users.slice(usersPerPage * page - usersPerPage, usersPerPage * page)
+        
+        const renderedUsers = usersSliced.filter(user => user.id.trim() !== currentUserId).map(user => (
+            <User 
+                key={ user.id } 
+                name={ user.name } 
+                photoURL={ user.photoURL }
+            />
+        ))
 
-            return (
-                <>
-                    <ul>
-                        { renderedUsers }
-                    </ul>
-                    <UsersListPageSelect
-                        page={ page }
-                        setPage={ setPage }
-                        numberOfPages={ numberOfPages }
-                    />
-                </>
-            )
-        }
+        return (
+            <>
+                <ul>
+                    { renderedUsers }
+                </ul>
+                <UsersListPageSelect
+                    page={ page }
+                    setPage={ setPage }
+                    numberOfPages={ numberOfPages }
+                />
+            </>
+        )
     }
     
     return (

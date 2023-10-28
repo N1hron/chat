@@ -11,10 +11,5 @@ export const Feature = styled.section`
 
 export const Content = styled.div`
     padding: 15px;
-    height: 1px;
     flex-grow: 1;
-
-    &>div {
-        height: 100%;
-    }
 `

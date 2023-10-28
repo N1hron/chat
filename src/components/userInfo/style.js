@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 import Block from '../styled/Block'
 
 
-export const Content = styled(Block)`
+export const UserInfo = styled(Block)`
     position: relative;
     display: flex;
     gap: 20px;
@@ -14,6 +14,7 @@ export const Avatar = styled.div`
     flex-direction: column;
     border-radius: 10px;
     overflow: hidden;
+    flex-shrink: 0;
 `
 
 export const Info = styled.div`
